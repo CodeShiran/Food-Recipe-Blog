@@ -1,8 +1,18 @@
 import React from 'react'
+import assets from '../assets/assets'
 
 const BeChef = () => {
   return (
-    <div>BeChef</div>
+    <div className='flex items-center flex-col md:flex-row w-[90%] mx-auto md:mt-[150px] mt-[100px]'>
+      <div className='flex-1 md:block hidden'>
+        <h2 className='text-5xl font-bold'>Everyone can be a <br />chef in their own kitchen</h2>
+        <p className='text-gray-400 mt-[50px]'>Discover the joy of cooking with our easy-to-follow recipes and tips.</p>
+        <button className='mt-[50px] bg-black text-white px-4 py-2 rounded-3xl hover:bg-gray-800 transition-all duration-150 hover:shadow-2xl cursor-pointer'>Learn More</button>
+      </div>
+      <div className='flex-1 items-center overflow-hidden'> 
+        <img src={assets.chef} alt="" />
+      </div>
+    </div>
   )
 }
 
