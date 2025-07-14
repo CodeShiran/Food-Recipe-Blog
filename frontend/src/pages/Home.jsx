@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "../section/Hero";
 import Categories from "../section/categories";
 import Recipes from "../section/Recipes";
+import BeChef from "../section/BeChef";
 
 
 
@@ -11,7 +12,7 @@ const Home = () => {
       <Hero />
       <Categories />
       <Recipes />
-      
+      <BeChef />
     </div>
   );
 };
