@@ -4,12 +4,14 @@ import Categories from "../section/categories";
 import Recipes from "../section/Recipes";
 
 
+
 const Home = () => {
   return (
     <div>
       <Hero />
       <Categories />
       <Recipes />
+      
     </div>
   );
 };
