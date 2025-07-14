@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "../section/Hero";
 import Categories from "../section/categories";
+import Recipes from "../section/Recipes";
 
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <div>
       <Hero />
       <Categories />
+      <Recipes />
     </div>
   );
 };

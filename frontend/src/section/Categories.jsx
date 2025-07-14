@@ -21,18 +21,18 @@ const Categories = () => {
         }
         return (
           <div
-  key={index}
-  className={`relative flex flex-col items-center justify-center gap-8 p-6 cursor-pointer hover:scale-105 transition-transform duration-300 rounded-2xl ${bgClass}`}
->
-  {/* Glass effect at top */}
-  <div className="absolute top-0 left-0 w-full h-16 rounded-t-2xl backdrop-blur-md bg-white/30 pointer-events-none"></div>
-  <img
-    src={category.image}
-    className="w-[75px] h-[75px] object-cover z-10"
-    alt=""
-  />
-  <p className="font-bold z-10">{category.name}</p>
-</div>
+            key={index}
+            className={`relative flex flex-col items-center justify-center gap-8 p-6 cursor-pointer hover:scale-105 transition-transform duration-300 rounded-2xl ${bgClass}`}
+          >
+            {/* Glass effect at top */}
+            <div className="absolute top-0 left-0 w-full h-16 rounded-t-2xl backdrop-blur-md bg-white/30 pointer-events-none"></div>
+            <img
+              src={category.image}
+              className="w-[75px] h-[75px] object-cover z-10"
+              alt=""
+            />
+            <p className="font-bold z-10">{category.name}</p>
+          </div>
         );
       })}
     </div>
