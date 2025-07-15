@@ -6,6 +6,7 @@ import BeChef from "../section/BeChef";
 import Instagram from "../section/Instagram";
 import MoreRecipes from "../section/MoreRecipes";
 import Email from "../section/Email";
+import Footer from "../components/Footer";
 
 
 
@@ -19,6 +20,7 @@ const Home = () => {
       <Instagram />
       <MoreRecipes />
       <Email />
+      <Footer />
     </div>
   );
 };
