@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { FaInstagram } from "react-icons/fa";
 
 const INSTAGRAM_URLS = [
   "https://www.instagram.com/p/DMGbl2YsxKM/",
@@ -50,6 +51,12 @@ const Instagram = () => {
           ></blockquote>
         ))}
       </div>
+      <div className="flex mx-auto flex-row gap-4 items-center mt-8 bg-black text-white px-4 py-2 rounded-lg w-[200px] shadow-xl hover:shadow-2xl transition-all duration-150 cursor-pointer">
+        <p>Visit Our Instagram</p>
+        <FaInstagram className="text-white" />
+      </div>
+        
+      
     </div>
   );
 };
