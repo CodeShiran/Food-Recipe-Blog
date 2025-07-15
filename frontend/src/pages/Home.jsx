@@ -3,6 +3,7 @@ import Hero from "../section/Hero";
 import Categories from "../section/categories";
 import Recipes from "../section/Recipes";
 import BeChef from "../section/BeChef";
+import Instagram from "../section/Instagram";
 
 
 
@@ -13,6 +14,7 @@ const Home = () => {
       <Categories />
       <Recipes />
       <BeChef />
+      <Instagram />
     </div>
   );
 };
