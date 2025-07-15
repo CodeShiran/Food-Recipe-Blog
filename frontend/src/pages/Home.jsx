@@ -4,6 +4,7 @@ import Categories from "../section/categories";
 import Recipes from "../section/Recipes";
 import BeChef from "../section/BeChef";
 import Instagram from "../section/Instagram";
+import MoreRecipes from "../section/MoreRecipes";
 
 
 
@@ -15,6 +16,7 @@ const Home = () => {
       <Recipes />
       <BeChef />
       <Instagram />
+      <MoreRecipes />
     </div>
   );
 };

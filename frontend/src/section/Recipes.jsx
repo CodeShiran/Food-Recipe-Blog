@@ -18,6 +18,7 @@ const Recipes = () => {
                         name={recipe.name}
                         time={recipe.time}
                         type={recipe.type}
+                        bgColor="bg-[#E7F9FD]"
                     />
                 ))
              }
