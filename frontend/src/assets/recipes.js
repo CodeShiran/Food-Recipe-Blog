@@ -7,6 +7,7 @@ import Pancake from './pancake.png'
 import RoastedSalmon from './roasted-salmon.png'
 import WagyuBurger from './wagyu-burger.png'
 
+
 const recipes = [{
     name: 'Chicken Meatballs with Cream Cheese',
     image: ChickenMeatballs,

@@ -5,6 +5,9 @@ import EggSaladBg from './eggsaladbg.png'
 import LeavesBg from './leavesbg.png'
 import VeganSaladBg from './vegesaladbg.png'
 import JapaneseFridRice from './japanesefriedricedetails.png'
+import ChickenMeatballsSm from './chickenmeatballssm.png'
+import CreamyChickenSm from './creamychicken.png'
+import PotChickensm from './potchickensm.png'
 
 
 export const assets = {
@@ -15,7 +18,9 @@ export const assets = {
   leavesBg: LeavesBg,
   veganSaladBg: VeganSaladBg,
   japaneseFriedRice: JapaneseFridRice,
-
+  chickenMeatballsSm: ChickenMeatballsSm,
+  creamyChickenSm: CreamyChickenSm,
+  potChickensm: PotChickensm,
   // Add more assets here
 }
 

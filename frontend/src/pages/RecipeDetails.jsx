@@ -3,6 +3,7 @@ import { TbStopwatch } from "react-icons/tb";
 import { CiForkAndKnife } from "react-icons/ci";
 import { IoPrintOutline, IoShareOutline } from "react-icons/io5";   
 import assets from "../assets/assets";
+import SmallCard from '../components/SmallCard';
 
 const nutritionData = [
   { label: 'Calories', value: '200 kcal' },
@@ -19,6 +20,27 @@ const ingredients = [
   '1 tablespoon sesame oil',
   'Salt and pepper to taste',
 ];
+
+const recipes = [
+    {
+        id: 1,
+        title: "Healthy Japanese Fried Rice",
+        image: assets.chickenMeatballsSm,
+        person: "John Doe",
+    },
+    {
+        id: 2,
+        title: "Spaghetti Carbonara",
+        image: assets.creamyChickenSm,
+        person: "Jane Smith",
+    },
+    {
+        id: 3,
+        title: "Chicken Tikka Masala",
+        image: assets.potChickensm,
+        person: "Alice Johnson",
+    },
+]
 
 const RecipeDetails = () => {
   return (
@@ -88,7 +110,7 @@ const RecipeDetails = () => {
                 This recipe for Healthy Japanese Fried Rice is not only quick and easy to prepare, but it also offers a delightful blend of flavors and textures. The combination of fresh vegetables, tender chicken, and perfectly cooked rice makes it a satisfying meal that can be enjoyed any time of the day. Whether you're looking for a nutritious lunch or a comforting dinner, this dish is sure to please.
             </p>
         </div>
-        <div className='flex flex-row gap-6 mt-8'>
+        <div className='flex flex-col md:flex-row gap-6 mt-8'>
             <div className='flex-2/3'>
                 <h3 className='text-2xl font-semibold mb-[40px]'>Ingredients</h3>
                 {ingredients.map((ingredient, index) => (
@@ -98,8 +120,17 @@ const RecipeDetails = () => {
                 ))}
             </div>
             <div className='flex-1/3'>
-                <h3>Other Recipes</h3>
-
+                <h3 className='text-2xl font-semibold mb-[40px] md:text-end'>Other Recipes</h3>
+                <div className='flex flex-col gap-5 items-center md:items-end'>
+                    {recipes.map((recipe) => (
+                        <SmallCard
+                            key={recipe.id}
+                            image={recipe.image}
+                            title={recipe.title}
+                            person={recipe.person}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     </div>
