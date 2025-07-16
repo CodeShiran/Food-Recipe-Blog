@@ -16,10 +16,10 @@ const nutritionData = [
 
 const RecipeDetailsHero = () => {
   return (
-    <div className='px-[50px]'>
+    <div className='px-[25px] md:px-[50px]'>
         <div className='flex items-center justify-between py-[30px]'>
-            <h1 className='text-5xl font-semibold'>Healthy Japanese Fried Rice</h1>
-            <div className='flex items-center gap-6'>
+            <h1 className='text-3xl md:text-5xl font-semibold'>Healthy Japanese Fried Rice</h1>
+            <div className='hidden md:flex items-center gap-6'>
                 <div className='flex items-center justify-center rounded-full w-15 h-15 bg-[#E7FAFE] cursor-pointer hover:bg-[#D1F2F6] transition-colors duration-200'>
                     <IoPrintOutline />
                 </div>
@@ -28,36 +28,36 @@ const RecipeDetailsHero = () => {
                 </div>
             </div>
         </div>
-        <div className='flex items-center flex-row gap-8'>
-            <div className='flex items-center flex-row gap-4'>
-                <div className='w-10 h-10 rounded-full overflow-hidden'>
-                    <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="" />
-                </div>
-                <div className='flex flex-col'>
-                    <p className='font-semibold'>John Smith</p>
-                    <p className='text-sm text-gray-500'>12 July 2025</p>
-                </div>
+        <div className='flex flex-col md:flex-row flex-wrap items-center gap-4 md:gap-8'>
+          <div className='flex items-center gap-2 md:gap-4'>
+            <div className='w-10 h-10 rounded-full overflow-hidden'>
+              <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="" />
             </div>
-            <div className='flex items-center flex-row gap-8 pl-6 pr-2 border-l-1  border-gray-300'>
-                <TbStopwatch />
-                <div className='flex flex-col text-sm font-semibold'>
-                    <p>Prep Time</p>
-                    <p>15 min</p>
-                </div>
+            <div className='flex flex-col border-b-1 border-gray-300 pb-2 md:border-none'>
+              <p className='font-semibold'>John Smith</p>
+              <p className='text-sm text-gray-500'>12 July 2025</p>
             </div>
-            <div className='flex items-center flex-row gap-6 px-6 border-l-1 border-r-1 border-gray-300'>
-                <CiForkAndKnife />
-                <div className='flex flex-col font-semibold text-sm'>
-                    <p>Cook Time</p>
-                    <p>15 min</p>
-                </div>
+          </div>
+          <div className='flex items-center gap-2 md:gap-8 md:pl-6 md:pr-2 border-l-0 md:border-l-1 border-gray-300 max-md:border-b-1'>
+            <TbStopwatch />
+            <div className='flex flex-col text-sm font-semibold'>
+              <p>Prep Time</p>
+              <p>15 min</p>
             </div>
-            <div className='flex items-center flex-row gap-6 px-2 border-gray-300'>
-                <CiForkAndKnife />
-                <p className='font-semibold text-sm'>Chicken</p>
+          </div>
+          <div className='flex items-center gap-2 md:gap-6 md:px-6 md:border-l-1 md:border-r-1 border-gray-300 max-md:border-b-1'>
+            <CiForkAndKnife />
+            <div className='flex flex-col font-semibold text-sm'>
+              <p>Cook Time</p>
+              <p>15 min</p>
             </div>
+          </div>
+          <div className='flex items-center gap-2 md:gap-6 md:px-2 border-gray-300'>
+            <CiForkAndKnife />
+            <p className='font-semibold text-sm'>Chicken</p>
+          </div>
         </div>
-        <div className='mt-8 flex flex-row gap-6 items-center'>
+        <div className='mt-8 flex flex-col md:flex-row gap-6 items-center'>
             <div className='flex-2/3 w-full h-[600px] rounded-lg overflow-hidden'>
                 <img src={assets.japaneseFriedRice} className='w-full h-full object-cover' alt="" />
             </div>
