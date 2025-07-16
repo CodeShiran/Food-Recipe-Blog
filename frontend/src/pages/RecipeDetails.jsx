@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+
+import RecipeDetailsHero from '../section/RecipeDetailsHero';
 
 const RecipeDetails = () => {
   return (
-    <div>RecipeDetails</div>
+    <div>
+        <RecipeDetailsHero />
+    </div>
   )
 }
 
