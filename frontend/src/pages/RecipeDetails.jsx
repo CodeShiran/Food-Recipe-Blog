@@ -4,6 +4,10 @@ import { CiForkAndKnife } from "react-icons/ci";
 import { IoPrintOutline, IoShareOutline } from "react-icons/io5";   
 import assets from "../assets/assets";
 import SmallCard from '../components/SmallCard';
+import EmailBox from '../components/EmailBox'
+import Footer from '../components/Footer'
+import moreRecipes from '../assets/moreRecipes';
+import RecipeCard from '../components/RecipeCard'
 
 const nutritionData = [
   { label: 'Calories', value: '200 kcal' },
@@ -20,6 +24,14 @@ const ingredients = [
   '1 tablespoon sesame oil',
   'Salt and pepper to taste',
 ];
+
+const method = [{
+  step: 'Heat sesame oil in a pan, add mixed vegetables and stir-fry for 2-3 minutes.',
+}, {
+  step: 'Push the vegetables to one side, crack the eggs into the pan and scramble them.',
+}, {
+  step: 'Add the cooked rice, soy sauce, salt, and pepper. Stir everything together and cook for another 5 minutes.',
+}]
 
 const recipes = [
     {
@@ -133,6 +145,38 @@ const RecipeDetails = () => {
                 </div>
             </div>
         </div>
+        <div className='mt-8 max-w-[70%]'>
+           <h3 className='text-2xl font-semibold'>Directions</h3>
+          <div className='ml-[50px] mt-[30px]'>
+          <img src={assets.cookingWoman} className='w-full h-auto' alt="" />
+          <div className='flex flex-col gap-4 mt-4'>
+            
+            {method.map((step, index) => (
+              <div key={index} className='flex items-start gap-2'>
+                <span className='text-lg font-semibold'>{index + 1}.</span>
+                <p className='text-sm  text-gray-500'>{step.step}</p>
+              </div>
+            ))}
+          </div>
+          </div>
+        </div>
+        <EmailBox />
+        <div className='mt-8 mb-10'>
+            <h3 className='text-2xl font-semibold text-center'>You May Like These Foods Too</h3>
+            <div className='mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+              {moreRecipes.slice(0, 4).map((recipes, index) => (
+                <RecipeCard
+                        key={index}
+                        image={recipes.image}
+                        name={recipes.name}
+                        time={recipes.time}
+                        type={recipes.type}
+                        bgColor="bg-[#ffffff]"
+                    />
+              ))}
+            </div>
+        </div>
+        <Footer />
     </div>
   )
 }

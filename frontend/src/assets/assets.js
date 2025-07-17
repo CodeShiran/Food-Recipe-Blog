@@ -8,6 +8,7 @@ import JapaneseFridRice from './japanesefriedricedetails.png'
 import ChickenMeatballsSm from './chickenmeatballssm.png'
 import CreamyChickenSm from './creamychicken.png'
 import PotChickensm from './potchickensm.png'
+import CookingWoman from './cookingwoman.png'
 
 
 export const assets = {
@@ -21,6 +22,7 @@ export const assets = {
   chickenMeatballsSm: ChickenMeatballsSm,
   creamyChickenSm: CreamyChickenSm,
   potChickensm: PotChickensm,
+  cookingWoman: CookingWoman,
   // Add more assets here
 }
 
