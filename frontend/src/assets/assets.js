@@ -9,6 +9,12 @@ import ChickenMeatballsSm from './chickenmeatballssm.png'
 import CreamyChickenSm from './creamychicken.png'
 import PotChickensm from './potchickensm.png'
 import CookingWoman from './cookingwoman.png'
+import Post1 from './post1.png'
+import Post2 from './post2.png'
+import Post3 from './post3.png'
+import Post4 from './post4.png'
+import Post5 from './post5.png'
+import Post6 from './post6.png'
 
 
 export const assets = {
@@ -23,6 +29,12 @@ export const assets = {
   creamyChickenSm: CreamyChickenSm,
   potChickensm: PotChickensm,
   cookingWoman: CookingWoman,
+  post1: Post1,
+  post2: Post2,
+  post3: Post3,
+  post4: Post4,
+  post5: Post5,
+  post6: Post6,
   // Add more assets here
 }
 
