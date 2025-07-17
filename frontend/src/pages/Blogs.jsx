@@ -2,6 +2,7 @@ import React from 'react'
 import BlogCard from '../components/BlogCard'
 import { assets } from '../assets/assets'
 import SmallCard from '../components/SmallCard'
+import EmailBox from '../components/EmailBox'
 
 const postData = [{
     id:1,
@@ -88,7 +89,7 @@ const Blogs = () => {
                 <button className='bg-black text-white w-[100px] rounded-md p-2 ml-2'>Search</button>
             </div>
         </div>
-        <div className='mt-[50px] flex flex-row gap-6'>
+        <div className='mt-[75px] flex flex-row gap-6'>
             <div className='flex-2/3 flex flex-col gap-6'>
                 {postData.map((post) => (
                 <BlogCard
@@ -115,6 +116,12 @@ const Blogs = () => {
                     ))}
                 </div>
             </div>
+        </div>
+        <div className='mt-[50px] text-center'>
+            <p>Page No</p>
+        </div>
+        <div>
+            <EmailBox />
         </div>
     </div>
   )
