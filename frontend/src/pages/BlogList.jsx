@@ -78,7 +78,7 @@ const recipes = [
     },
 ]
 
-const Blogs = () => {
+const BlogList = () => {
   return (
     <div className='md:px-[50px] px-[25px]'>
         <div className='mt-[50px] flex flex-col justify-center items-center mx-auto'>
@@ -127,4 +127,4 @@ const Blogs = () => {
   )
 }
 
-export default Blogs
+export default BlogList;
