@@ -7,25 +7,25 @@ const Contact = () => {
       <div>
         <h1 className="text-4xl font-bold">Contact Us</h1>
         <div className="flex flex-row gap-6 mt-6">
-          <div className="flex-1/3 bg-[#E7F9FD] rounded-lg flex flex-col justify-end">
+          <div className="hidden flex-1/3 bg-[#E7F9FD] rounded-lg md:flex flex-col justify-end">
             <img
               src={assets.contactPerson}
               className="w-full h-auto object-cover rounded-lg"
               alt=""
             />
           </div>
-          <div className="flex-2/3">
-            <div className="flex flex-row gap-10">
-              <div className="flex flex-col w-[40%] gap-7 items-start p-2">
-                <p>Your Name</p>
+          <div className="flex-2/3 max-md:px-[50px] max-sm:px-[15px] max-md:py-[30px] rounded-2xl max-md:bg-[#E7F9FD]">
+            <div className="flex flex-col md:flex-row gap-10">
+              <div className="flex flex-col md:flex-col w-full md:w-[40%] gap-2 items-start">
+                <p className="whitespace-nowrap font-semibold">Your Name</p>
                 <input
                   type="text"
                   placeholder="Your Name"
                   className="w-full h-[40px] p-2 border border-gray-300 rounded"
                 />
               </div>
-              <div className="flex flex-col w-[40%] gap-7 items-start ">
-                <p>Your Email</p>
+              <div className="flex flex-col md:flex-col w-full md:w-[40%] gap-2 items-start">
+                <p className="whitespace-nowrap font-semibold">Your Email</p>
                 <input
                   type="email"
                   placeholder="Your Email"
@@ -33,8 +33,8 @@ const Contact = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-row gap-10">
-              <div className="flex flex-col w-[40%] gap-7 items-start">
+            <div className="flex flex-col md:flex-row gap-10 mt-[25px]">
+              <div className="whitespace-nowrap flex w-full flex-row md:flex-col md:w-[40%] gap-7 items-start">
                 <p>Subject</p>
                 <input
                   type="text"
@@ -42,7 +42,7 @@ const Contact = () => {
                   className="w-full h-[40px] p-2 border border-gray-300 rounded"
                 />
               </div>
-              <div className="flex flex-col w-[40%] gap-7 items-start">
+              <div className="whitespace-nowrap flex w-full flex-row md:flex-col md:w-[40%] gap-7 items-start">
                 <p>Your Email</p>
                 <input
                   type="email"
@@ -51,7 +51,7 @@ const Contact = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-row mt-[25px] ">
+            <div className="flex flex-col md:flex-row mt-[25px] ">
               <div className="flex flex-col w-[100%] gap-7 items-start">
                 <p>Your Message</p>
                 <textarea
