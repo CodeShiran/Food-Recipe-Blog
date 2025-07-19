@@ -5,12 +5,13 @@ import RecipeDetails from './pages/RecipeDetails'
 import Footer from './components/Footer'
 import BlogList from './pages/BlogList'
 import BlogPost from './pages/BlogPost'
+import Contact from './pages/Contact'
 
 const App = () => {
   return (
     <div>
       <Navbar />
-      <BlogPost />
+      <Contact />
       <Footer />
     </div>
   )
