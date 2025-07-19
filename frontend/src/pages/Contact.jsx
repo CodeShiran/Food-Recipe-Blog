@@ -1,11 +1,14 @@
 import React from "react";
 import assets from "../assets/assets";
+import EmailBox from "../components/EmailBox";
+import moreRecipes from "../assets/moreRecipes";
+import RecipeCard from "../components/RecipeCard";
 
 const Contact = () => {
   return (
     <div className="md:px-[50px] px-[25px]">
       <div>
-        <h1 className="text-4xl font-bold">Contact Us</h1>
+        <h1 className="text-4xl font-bold text-center">Contact Us</h1>
         <div className="flex flex-row gap-6 mt-6">
           <div className="hidden flex-1/3 bg-[#E7F9FD] rounded-lg md:flex flex-col justify-end">
             <img
@@ -68,6 +71,22 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <EmailBox />
+      <div className='mt-8 mb-10'>
+            <h3 className='text-2xl font-semibold text-center'>You May Like These Foods Too</h3>
+            <div className='mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center'>
+              {moreRecipes.slice(0, 4).map((recipes, index) => (
+                <RecipeCard
+                        key={index}
+                        image={recipes.image}
+                        name={recipes.name}
+                        time={recipes.time}
+                        type={recipes.type}
+                        bgColor="bg-[#ffffff]"
+                    />
+              ))}
+            </div>
+        </div>
     </div>
   );
 };
