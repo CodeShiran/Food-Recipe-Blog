@@ -6,12 +6,13 @@ import Footer from './components/Footer'
 import BlogList from './pages/BlogList'
 import BlogPost from './pages/BlogPost'
 import Contact from './pages/Contact'
+import About from './pages/About'
 
 const App = () => {
   return (
     <div>
       <Navbar />
-      <Contact />
+      <About />
       <Footer />
     </div>
   )

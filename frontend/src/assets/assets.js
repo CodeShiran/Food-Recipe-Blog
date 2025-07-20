@@ -17,6 +17,8 @@ import Post5 from './post5.png'
 import Post6 from './post6.png'
 import ChefCooking from './cookingchef.png'
 import ContactPerson from './contactperson.png'
+import FruitSalad from './fruitsalad.png'
+import CookingWoman2 from './cookingwoman2.png'
 
 
 export const assets = {
@@ -39,6 +41,8 @@ export const assets = {
   post6: Post6,
   chefCooking: ChefCooking,
   contactPerson: ContactPerson,
+  fruitSalad: FruitSalad,
+  cookingWoman2: CookingWoman2,
   // Add more assets here
 }
 
