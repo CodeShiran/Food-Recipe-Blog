@@ -20,7 +20,6 @@ const Home = () => {
       <Instagram />
       <MoreRecipes />
       <Email />
-      <Footer />
     </div>
   );
 };

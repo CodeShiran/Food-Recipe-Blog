@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -17,34 +18,44 @@ const Navbar = () => {
         </div>
         <div className='flex items-center gap-9 list-none max-md:hidden'>
             <li className='relative cursor-pointer group'>
-                <span className='relative'>
+                <Link to='/'>
+                    <span className='relative'>
                     Home
                     <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full group-hover:left-0'></span>
                 </span>
+                </Link>
             </li>
             <li className='relative cursor-pointer group'>
-                <span className='relative'>
-                    Recipes
+                <Link to='/recipes'>
+                    <span className='relative'>
+                        Recipes
                     <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full group-hover:left-0'></span>
                 </span>
+                </Link>
             </li>
             <li className='relative cursor-pointer group'>
-                <span className='relative'>
-                    Blog
-                    <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full group-hover:left-0'></span>
-                </span>
+                <Link to='/blog'>
+                    <span className='relative'>
+                        Blog
+                        <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full group-hover:left-0'></span>
+                    </span>
+                </Link>
             </li>
             <li className='relative cursor-pointer group'>
-                <span className='relative'>
-                    Contact
-                    <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full group-hover:left-0'></span>
-                </span>
+                <Link to='/contact'>
+                    <span className='relative'>
+                        Contact
+                        <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full group-hover:left-0'></span>
+                    </span>
+                </Link>
             </li>
             <li className='relative cursor-pointer group'>
-                <span className='relative'>
-                    About Us
-                    <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full group-hover:left-0'></span>
-                </span>
+                <Link to='/about'>
+                    <span className='relative'>
+                        About Us
+                        <span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full group-hover:left-0'></span>
+                    </span>
+                </Link>
             </li>
         </div>
         <div className='flex items-center gap-6 max-md:hidden'>
