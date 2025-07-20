@@ -89,8 +89,8 @@ const BlogList = () => {
                 <button className='bg-black text-white w-[100px] rounded-md p-2 ml-2'>Search</button>
             </div>
         </div>
-        <div className='mt-[75px] flex flex-row gap-6'>
-            <div className='flex-2/3 flex flex-col gap-6'>
+        <div className='mt-[75px] grid grid-cols-1 md:grid-cols-3 gap-6'>
+            <div className='md:col-span-2 flex flex-col gap-6 w-full'>
                 {postData.map((post) => (
                 <BlogCard
                     key={post.id}
@@ -103,9 +103,9 @@ const BlogList = () => {
                 />
             ))}
             </div>
-            <div className='flex-1/3 flex flex-col gap-6'>
-                <h2 className='text-xl font-bold'>Related Recipes</h2>
-                <div className='w-full flex flex-col gap-4'>
+            <div className='md:col-span-1'>
+                <h2 className='text-xl font-bold mb-4'>Related Recipes</h2>
+                <div className='grid grid-cols-1 gap-4'>
                     {recipes.map((recipe) => (
                         <SmallCard
                             key={recipe.id}
