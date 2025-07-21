@@ -8,6 +8,7 @@ import BlogPost from './pages/BlogPost'
 import Contact from './pages/Contact'
 import About from './pages/About'
 import { Routes, Route } from 'react-router-dom'
+import Recipes from './pages/Recipes'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/blog' element={<BlogList />} />
         <Route path='/blog/:id' element={<BlogPost />} />
+        <Route path='/recipes' element={<Recipes />} />
         <Route path='/recipe/:id' element={<RecipeDetails />} />
       </Routes>
       
