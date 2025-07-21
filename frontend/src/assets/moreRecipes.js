@@ -54,6 +54,12 @@ const moreRecipes = [{
     image: VegetarianTaco,
     time: '25 minutes',
     type: 'Vegetarian'
+},
+{
+    name: 'Cauliflower Walnut Vegetarian Taco Meat',
+    image: VegetarianTaco,
+    time: '37 minutes',
+    type: 'vegan'
 }]
 
 
