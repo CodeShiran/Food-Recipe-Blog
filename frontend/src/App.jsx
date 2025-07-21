@@ -9,6 +9,7 @@ import Contact from './pages/Contact'
 import About from './pages/About'
 import { Routes, Route } from 'react-router-dom'
 import Recipes from './pages/Recipes'
+import AiChat from './pages/AiChat'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path='/blog/:id' element={<BlogPost />} />
         <Route path='/recipes' element={<Recipes />} />
         <Route path='/recipe/:id' element={<RecipeDetails />} />
+        <Route path='/ai-chat' element={<AiChat />} />
       </Routes>
       
       <Footer />
