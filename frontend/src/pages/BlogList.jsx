@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BlogCard from '../components/BlogCard'
 import { assets } from '../assets/assets'
 import SmallCard from '../components/SmallCard'
@@ -55,6 +55,16 @@ const postData = [{
     personImg: "https://randomuser.me/api/portraits/men/29.jpg",
     personName: "David Wilson",
     date: "June 10, 2023"
+},
+{
+    
+    id:7,
+    title: "Healthy Eating: Nutritious Recipes for a Balanced Diet",
+    description: "Embrace a healthier lifestyle with our nutritious recipes designed for a balanced diet. From wholesome breakfasts to satisfying dinners, these dishes are packed with flavor and good-for-you ingredients.",
+    postImg: assets.post6,
+    personImg: "https://randomuser.me/api/portraits/men/29.jpg",
+    personName: "David Wilson",
+    date: "June 10, 2023"
 }]
 
 const recipes = [
@@ -79,6 +89,14 @@ const recipes = [
 ]
 
 const BlogList = () => {
+    const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6;
+
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const endIndex = startIndex + postsPerPage;
+  const postsToShow = postData.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(postData.length / postsPerPage);
   return (
     <div className='md:px-[50px] px-[25px]'>
         <div className='mt-[50px] flex flex-col justify-center items-center mx-auto'>
@@ -91,7 +109,7 @@ const BlogList = () => {
         </div>
         <div className='mt-[75px] grid grid-cols-1 md:grid-cols-3 gap-6'>
             <div className='md:col-span-2 flex flex-col gap-6 w-full'>
-                {postData.map((post) => (
+                {postsToShow.map((post) => (
                 <BlogCard
                     key={post.id}
                     title={post.title}
@@ -117,9 +135,17 @@ const BlogList = () => {
                 </div>
             </div>
         </div>
-        <div className='mt-[50px] text-center'>
-            <p>Page No</p>
-        </div>
+        <div className="text-center mt-[50px]">
+        {[...Array(totalPages)].map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentPage(i + 1)}
+            className={currentPage === i + 1 ? "font-bold" : ""}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
         <div>
             <EmailBox />
         </div>
