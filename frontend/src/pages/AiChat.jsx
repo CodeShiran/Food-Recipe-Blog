@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaCircleArrowUp } from "react-icons/fa6";
 import assets from "../assets/assets";
 import { useNavigate } from "react-router-dom";
-import { SiFoodpanda } from "react-icons/si";
+import { PiHamburgerBold } from "react-icons/pi";
+import TypewriterComponent from "typewriter-effect";
 
 const AiChat = () => {
   const videoRef = useRef(null);
@@ -18,17 +19,18 @@ const AiChat = () => {
   const [waiting, setWaiting] = useState(false);
 
   const handleSend = () => {
-    if (input.trim() === "") return;
-    const userMsg = { text: input, sender: "user" };
-    setMessages([...messages, userMsg]);
-    setInput("");
-    setWaiting(true)
-    setTimeout(() => {
-      const aiMsg = { text: "This is a response from AI.", sender: "ai" }; // Replace with real response logic
-      setMessages((prev) => [...prev, aiMsg]);
-      setWaiting(false)
-    }, 1000);
-  };
+  if (input.trim() === "") return;
+  const userMsg = { text: input, sender: "user" };
+  setMessages(prev => [...prev, userMsg]);
+  setInput("");
+  setWaiting(true);
+  setTimeout(() => {
+    const aiMsg = { text: "This is a response from AI.", sender: "ai" };
+    setMessages(prev => [...prev, aiMsg]);
+    // Keep waiting true for typewriter effect
+    setTimeout(() => setWaiting(false), 1200); // Adjust this delay to match your typewriter speed
+  }, 500); // This is the "thinking" delay before AI responds
+};
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Video Background */}
@@ -80,24 +82,46 @@ const AiChat = () => {
         <>
           <div className="relative z-20 flex flex-col items-center justify-start min-h-screen md:px-[50px] py-[100px] px-[25px] pb-[100px]">
             <div className="w-full max-w-[800px] flex flex-col gap-4">
-              {messages.map((msg, idx) => (
-                <div
-                  key={idx}
-                  className={`
-      ${
+              {messages.map((msg, idx) => {
+  // Show typewriter for the last AI message if waiting
+  if (
+    msg.sender === "ai" &&
+    idx === messages.length - 1 &&
+    waiting
+  ) {
+    return (
+      <div
+        key={idx}
+        className="self-end bg-red-500/20 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-2xl shadow-md max-w-[80%] break-words"
+      >
+        <TypewriterComponent
+          options={{
+            strings: [msg.text],
+            autoStart: true,
+            delay: 30,
+            cursor: "",
+          }}
+        />
+      </div>
+    );
+  }
+  // Normal rendering for all other messages
+  return (
+    <div
+      key={idx}
+      className={`${
         msg.sender === "user"
           ? "self-start bg-white/10"
           : "self-end bg-red-500/20"
-      }
-      backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-2xl shadow-md max-w-[80%] break-words
-    `}
-                >
-                  {msg.text}
-                </div>
-              ))}
+      } backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-2xl shadow-md max-w-[80%] break-words`}
+    >
+      {msg.text}
+    </div>
+  );
+})}
                {waiting && (
     <div className="self-end flex justify-end pr-4 pb-2">
-      <SiFoodpanda className="text-2xl text-white animate-bounce" />
+      <PiHamburgerBold className="text-2xl text-white animate-bounce" />
     </div>
   )}
             </div>
