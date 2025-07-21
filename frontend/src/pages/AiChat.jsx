@@ -14,6 +14,17 @@ const AiChat = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+
+  const handleSend = () => {
+  if (input.trim() === "") return;
+  const userMsg = { text: input, sender: "user" };
+  const aiMsg = { text: "This is a response from AI.", sender: "ai" }; // Replace with real response logic
+  //settimeout to simulate AI response delay
+  setTimeout(() => {
+    setMessages([...messages, userMsg, aiMsg]);
+    setInput("");
+  }, 1000);
+};
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Video Background */}
@@ -57,10 +68,7 @@ const AiChat = () => {
               />
             </div>
             <button
-              onClick={() => {
-                setMessages([...messages, input]);
-                setInput("");
-              }}
+              onClick={handleSend}
               className="ml-2 min-w-[48px]"
             >
               <FaCircleArrowUp className="text-2xl text-white hover:text-black duration-150 transition-all" />
@@ -72,13 +80,16 @@ const AiChat = () => {
           <div className="relative z-20 flex flex-col items-center justify-start min-h-screen md:px-[50px] py-[100px] px-[25px] pb-[100px]">
             <div className="w-full max-w-[800px] flex flex-col gap-4">
               {messages.map((msg, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white/10 backdrop-blur-md border border-white/20 self-start  text-white px-4 py-2 rounded-2xl shadow-md max-w-[80%] break-words"
-                >
-                  {msg}
-                </div>
-              ))}
+  <div
+    key={idx}
+    className={`
+      ${msg.sender === "user" ? "self-start bg-white/10" : "self-end bg-red-500/20"}
+      backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-2xl shadow-md max-w-[80%] break-words
+    `}
+  >
+    {msg.text}
+  </div>
+))}
             </div>
           </div>
           <div
@@ -104,10 +115,7 @@ const AiChat = () => {
                 />
               </div>
               <button
-                onClick={() => {
-                  setMessages([...messages, input]);
-                  setInput("");
-                }}
+                onClick={handleSend}
                 className="ml-2 min-w-[48px]"
               >
                 <FaCircleArrowUp className="text-2xl text-white hover:text-black duration-150 transition-all" />
