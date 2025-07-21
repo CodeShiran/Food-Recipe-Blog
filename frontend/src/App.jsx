@@ -7,14 +7,16 @@ import BlogList from './pages/BlogList'
 import BlogPost from './pages/BlogPost'
 import Contact from './pages/Contact'
 import About from './pages/About'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Recipes from './pages/Recipes'
 import AiChat from './pages/AiChat'
 
 const App = () => {
+  const location = useLocation();
+  const isAiChat = location.pathname === '/ai-chat';
   return (
     <div>
-      <Navbar />
+      {!isAiChat && <Navbar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
@@ -25,8 +27,7 @@ const App = () => {
         <Route path='/recipe/:id' element={<RecipeDetails />} />
         <Route path='/ai-chat' element={<AiChat />} />
       </Routes>
-      
-      <Footer />
+      {!isAiChat && <Footer />}
     </div>
   )
 }
