@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaCircleArrowUp } from "react-icons/fa6";
 import assets from '../assets/assets';
 import { useNavigate } from 'react-router-dom';
@@ -12,10 +12,13 @@ const AiChat = () => {
   }, []);
 
   const navigate = useNavigate()
+  const [messages, setMessages] = useState("")
+  const [input, setInput] = useState("")
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Video Background */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
@@ -36,19 +39,39 @@ const AiChat = () => {
 </div>
 
       {/* Foreground Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen md:px-[50px] px-[25px]">
-        <div className='mt-[100px] text-center'>
-          <h1 className='text-4xl font-bold text-white drop-shadow-lg'>Explore Recipes with AI Search</h1>
-        </div>
-        <div className='mt-[50px] flex flex-row items-center justify-between max-w-[600px] w-full mx-auto p-4 border-2 border-gray-300 rounded-lg shadow-md backdrop-blur-md'>
-          <div className='flex-1'>
-            <input className='p-2 focus:outline-none text-white placeholder:text-white w-full' type="text" placeholder='Type your message...' />
-          </div>
-          <button className="ml-2 min-w-[48px]">
-            <FaCircleArrowUp className='text-2xl text-white hover:text-black duration-150 transition-all' />
-          </button>
-        </div>
+      {!messages ? (
+  <div className="relative z-20 flex flex-col items-center justify-center min-h-screen md:px-[50px] px-[25px]">
+    <div className='mt-[100px] text-center'>
+      <h1 className='text-4xl font-bold text-white drop-shadow-lg'>Explore Recipes with AI Search</h1>
+    </div>
+    <div className='mt-[50px] flex flex-row items-center justify-between max-w-[600px] w-full mx-auto p-4 border-2 border-gray-300 rounded-lg shadow-md backdrop-blur-md'>
+      <div className='flex-1'>
+        <input value={input} onChange={e => setInput(e.target.value)} className='p-2 focus:outline-none text-white placeholder:text-white w-full' type="text" placeholder='Type your message...' />
       </div>
+      <button onClick={() => setMessages(input)} className="ml-2 min-w-[48px]">
+        <FaCircleArrowUp className='text-2xl text-white hover:text-black duration-150 transition-all' />
+      </button>
+    </div>
+  </div>
+) : (
+  <>
+    <div className={`
+  transition-transform duration-500 ease-out
+  fixed bottom-10 left-1/2 transform -translate-x-1/2
+  w-full max-w-[600px] z-30
+  ${messages ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}
+`}>
+      <div className='flex flex-row items-center justify-between max-w-[600px] w-full mx-auto p-4 border-2 border-gray-300 rounded-lg shadow-md backdrop-blur-md'>
+      <div className='flex-1'>
+        <input value={input} onChange={e => setInput(e.target.value)} className='p-2 focus:outline-none text-white placeholder:text-white w-full' type="text" placeholder='Type your message...' />
+      </div>
+      <button onClick={() => setMessages(input)} className="ml-2 min-w-[48px]">
+        <FaCircleArrowUp className='text-2xl text-white hover:text-black duration-150 transition-all' />
+      </button>
+    </div>
+    </div>
+  </>
+)}
     </div>
   )
 }
