@@ -20,6 +20,7 @@ import ContactPerson from './contactperson.png'
 import FruitSalad from './fruitsalad.png'
 import CookingWoman2 from './cookingwoman2.png'
 import bgVideo from './vecteezy_red-strawberries-falling-against-a-blue-background_2158717.mp4'
+import LoginBg from './loginbg.png'
 
 
 export const assets = {
@@ -45,6 +46,7 @@ export const assets = {
   fruitSalad: FruitSalad,
   cookingWoman2: CookingWoman2,
   bgVideo: bgVideo,
+  loginBg: LoginBg,
   // Add more assets here
 }
 
