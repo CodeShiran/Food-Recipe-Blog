@@ -14,16 +14,18 @@ const Login = () => {
                 Welcome Back to <br /> Foodieland!
             </h1>
         </div>
-        <div className='relative z-20 max-w-[500px] w-full backdrop-blur-md p-8 rounded-lg shadow-lg flex flex-col gap-6'>
-            <div className='flex items-center justify-between px-2 py-3 bg-gray-200 rounded'>
-                <MdOutlineEmail />
-                <input type="email" placeholder="Email" className='bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
+        <div className='relative z-20 max-w-[800px] w-full backdrop-blur-md  px-8 py-[100px] rounded-lg shadow-lg flex flex-col gap-6'>
+            <div className='flex items-center justify-between rounded'>
+                <MdOutlineEmail className='flex-1/4 text-white text-2xl' />
+                <input type="email" placeholder="Email" className='flex-3/4 bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
             </div>
             <div className='flex items-center justify-between'>
-                <RiLockPasswordLine />
-                <input type="password" placeholder="Password" className='bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
+                <RiLockPasswordLine className='flex-1/4 text-white text-2xl' />
+                <input type="password" placeholder="Password" className='flex-3/4 bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
             </div>
-            <div><button className=' bg-blue-500 text-white py-2 px-4 rounded'>Login</button></div>
+            <div className='flex items-center justify-end'>
+                <button className=' bg-[#F2F2F2] text-[#828282] py-2 px-8 rounded-2xl hover:bg-[#828282] hover:text-[#F2F2F2] transition-all duration-300 cursor-pointer'>Login</button>
+            </div>
         </div>
     </div>
   )
