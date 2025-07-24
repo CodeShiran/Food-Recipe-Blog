@@ -2,8 +2,10 @@ import React from 'react'
 import assets from '../assets/assets'
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate()
   return (
     <div className='relative h-screen w-full flex items-center md:flex-row flex-col md:justify-between justify-center px-[50px]'>
         <div className='absolute inset-0 bg-black/50 z-10'>
@@ -32,7 +34,7 @@ const Login = () => {
             </div>
             <div className='flex items-center justify-center md:justify-start md:ml-[75px]'>
                 <p className='text-[#828282]'>Don't have an account?</p>
-                <button className='text-[#F2F2F2] underline ml-2 hover:text-[#828282]'>Register</button>
+                <button onClick={() => navigate('/signup')} className='text-[#F2F2F2] underline ml-2 hover:text-[#828282]'>Register</button>
             </div>
 
         </div>
