@@ -20,12 +20,21 @@ const Login = () => {
                 <input type="email" placeholder="Email" className='flex-3/4 bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
             </div>
             <div className='flex md:flex-row flex-col items-start md:items-center justify-between'>
-                <RiLockPasswordLine className='flex-1/4 text-white text-2xl' />
-                <input type="password" placeholder="Password" className='flex-3/4 bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
+                <RiLockPasswordLine className='md:flex-1/4 text-white text-2xl' />
+                <input type="password" placeholder="Password" className='md:flex-3/4 bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
             </div>
-            <div className='flex items-center justify-end mt-[25px]'>
+            <div className='flex items-center justify-center md:justify-end mt-[25px]'>
                 <button className=' bg-[#F2F2F2] text-[#828282] py-2 px-8 rounded-2xl hover:bg-[#828282] hover:text-[#F2F2F2] transition-all duration-300 cursor-pointer'>Login</button>
             </div>
+            <div className='flex items-center justify-center md:justify-start mt-[25px] md:ml-[75px]'>
+                <p className='text-[#828282]'>Forgot your password?</p>
+                <button className='text-[#F2F2F2] underline ml-2 hover:text-[#828282]'>Reset it</button>
+            </div>
+            <div className='flex items-center justify-center md:justify-start md:ml-[75px]'>
+                <p className='text-[#828282]'>Don't have an account?</p>
+                <button className='text-[#F2F2F2] underline ml-2 hover:text-[#828282]'>Register</button>
+            </div>
+
         </div>
     </div>
   )
