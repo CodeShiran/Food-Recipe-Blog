@@ -11,14 +11,16 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Recipes from './pages/Recipes'
 import AiChat from './pages/AiChat'
 import Login from './pages/Login'
+import Signup from './pages/Signup'
 
 const App = () => {
   const location = useLocation();
   const isAiChat = location.pathname === '/ai-chat';
   const isLogin = location.pathname === '/login';
+  const isSignup = location.pathname === '/signup';
   return (
     <div>
-      {!isAiChat && !isLogin && <Navbar />}
+      {!isAiChat && !isLogin && !isSignup && <Navbar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
@@ -29,8 +31,9 @@ const App = () => {
         <Route path='/recipe/:id' element={<RecipeDetails />} />
         <Route path='/ai-chat' element={<AiChat />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
       </Routes>
-      {!isAiChat && !isLogin && <Footer />}
+      {!isAiChat && !isLogin && !isSignup && <Footer />}
     </div>
   )
 }
