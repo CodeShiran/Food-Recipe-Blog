@@ -89,27 +89,33 @@ const recipes = [
 ]
 
 const BlogList = () => {
+    const [search, setSearch] = useState("");
+
+    const filteredPosts = postData.filter(post => 
+        post.title.toLowerCase().includes(search.toLowerCase()) ||
+        post.personName.toLowerCase().includes(search.toLowerCase())
+    )
     const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
 
   const startIndex = (currentPage - 1) * postsPerPage;
   const endIndex = startIndex + postsPerPage;
-  const postsToShow = postData.slice(startIndex, endIndex);
+  const postsToShow = filteredPosts.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(postData.length / postsPerPage);
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
   return (
     <div className='md:px-[50px] px-[25px]'>
         <div className='mt-[50px] flex flex-col justify-center items-center mx-auto'>
             <h1 className='text-4xl font-bold'>Blog & Article</h1>
             <p className='text-sm text-center mt-4 text-gray-500'>Welcome to our blog section! Here you will find a variety of articles and posts related to food recipes, cooking tips, and culinary inspiration. <br /> Stay tuned for our latest updates!</p>
             <div className='flex flex-row items-center justify-between mt-6 rounded-2xl p-2 shadow-md border-1 border-gray-300 bg-white max-w-[600px] w-full'>
-                <input type="text" className='p-2 focus:outline-none' placeholder='Search articles...' />
-                <button className='bg-black text-white w-[100px] rounded-md p-2 ml-2'>Search</button>
+                <input onChange={e => setSearch(e.target.value)} type="text" className='p-2 focus:outline-none' placeholder='Search articles...' />
+                <button onClick={postsToShow} className='bg-black text-white w-[100px] rounded-md p-2 ml-2'>Search</button>
             </div>
         </div>
         <div className='mt-[75px] grid grid-cols-1 md:grid-cols-3 gap-6'>
             <div className='md:col-span-2 flex flex-col gap-6 w-full'>
-                {postsToShow.map((post) => (
+                {filteredPosts.map((post) => (
                 <BlogCard
                     key={post.id}
                     title={post.title}
