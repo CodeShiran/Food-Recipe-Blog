@@ -1,6 +1,6 @@
 
 import dotenv from 'dotenv'
-import { generateRecipe } from '../services/ai.service'
+import { generateRecipe } from '../services/ai.service.js'
 dotenv.config()
 
 

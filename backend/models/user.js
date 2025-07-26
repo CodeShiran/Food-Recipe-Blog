@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -21,12 +22,13 @@ const userSchema = new mongoose.Schema({
     image: {
         type:String,
         default: "https://www.gravatar.com/avatar/0000000000000000000000000000000?d=mp&f=y",
+        required: false,
     }
 
 
 }, { timestamps: true });
 
-userSchema.pre("save", async(next) => {
+userSchema.pre("save", async function async(next) {
     if(!this.isModified('password')) return next()
 
     try {
