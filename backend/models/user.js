@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    image: {
+        type:String,
+        default: "https://www.gravatar.com/avatar/0000000000000000000000000000000?d=mp&f=y",
     }
 
 
