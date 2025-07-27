@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import Post from "../models/post";
+import Post from "../models/post.js";
 
 export const createPost = async (req, res) => {
     const {title, author, content, description, image } = req.body
