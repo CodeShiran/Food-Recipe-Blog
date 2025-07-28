@@ -1,6 +1,6 @@
 import Recipe from "../models/recipe.js";
 
-const createRecipe = async (req, res) => {
+export const createRecipe = async (req, res) => {
     const {title, description, content, nutritionalInfo, prepTime, cookTime, ingredients, directions, image, author} = req.body;
     if (!title || !description || !content || !nutritionalInfo || !prepTime || !cookTime || !ingredients || !directions) {
         return res.status(400).json({message: 'Please fill all fields'});
