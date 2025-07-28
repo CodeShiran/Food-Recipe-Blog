@@ -33,8 +33,19 @@ export const editPost = async (req, res) => {
 
     const {title, author, content, description, image} = req.body
 
+    if(!title && !author && !content && !description && !image) {
+        return res.status(400).json({message: 'Please fill at least one field to update'});
+    }
+
+    const updatedFields = {}
+    if(title) updatedFields.title = title
+    if(author) updatedFields.author = author
+    if(content) updatedFields.content = content
+    if(description) updatedFields.description = description
+    if(image) updatedFields.image = image
+
     try {
-        const updatedPost = await Post.findByIdAndUpdate(id, { title, author, content, description, image }, { new: true });
+        const updatedPost = await Post.findByIdAndUpdate(id, updatedFields, { new: true });
         if (!updatedPost) {
             return res.status(404).json({message: 'Post not found'});
         }
