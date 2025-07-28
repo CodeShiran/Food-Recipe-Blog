@@ -27,3 +27,20 @@ export const getAllPosts = async (req, res) => {
         res.status(500).json({error: 'Internal server error'});
     }
 }
+
+export const editPost = async (req, res) => {
+    const {id} = req.params
+
+    const {title, author, content, description, image} = req.body
+
+    try {
+        const updatedPost = await Post.findByIdAndUpdate(id, { title, author, content, description, image }, { new: true });
+        if (!updatedPost) {
+            return res.status(404).json({message: 'Post not found'});
+        }
+        res.status(200).json({message: 'Post updated successfully', post: updatedPost});
+    } catch (error) {
+        console.error("Error editing post:", error.message);
+        res.status(500).json({error: 'Internal server error'});
+    }
+}
