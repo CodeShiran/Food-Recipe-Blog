@@ -27,3 +27,13 @@ export const createRecipe = async (req, res) => {
         res.status(500).json({error: 'Internal server error'});
     }
 }
+
+export const getAllRecipes = async (req, res) => {
+    try {
+        const recipes = await Recipe.find({})
+        res.status(200).json({recipes});
+    } catch (error) {
+        console.error("Error fetching recipes:", error.message);
+        res.status(500).json({error: 'Internal server error'});
+    }
+}
