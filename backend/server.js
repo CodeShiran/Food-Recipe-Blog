@@ -3,6 +3,7 @@ import connectdb from './config/db.js'
 import aiRouter from './routes/ai.route.js'
 import userRouter from './routes/user.route.js'
 import postsRouter from './routes/posts.route.js'
+import recipeRouter from './routes/recipe.route.js'
 
 
 const app = express()
@@ -18,4 +19,5 @@ app.listen(3000, () => {
 app.use('/api', aiRouter)
 app.use('/api/user', userRouter)
 app.use('/api/posts', postsRouter)
+app.use('/api/recipe', recipeRouter)
 

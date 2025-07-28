@@ -51,7 +51,7 @@ const recipeSchema = new mongoose.Schema({
             },
         },
     ],
-    Directions: [
+    directions: [
         {
             step: {
                 type: String,
