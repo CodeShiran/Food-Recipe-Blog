@@ -55,3 +55,18 @@ export const editPost = async (req, res) => {
         res.status(500).json({error: 'Internal server error'});
     }
 }
+
+export const deletePost = async (req, res) => {
+    const {id} = req.params
+
+    try {
+        const deletedPost = await Post.findByIdAndDelete(id)
+        if (!deletedPost) {
+            return res.status(404).json({message: 'Post not found'});
+        }
+        res.status(200).json({message: 'Post deleted successfully'});
+    } catch (error) {
+        console.error("Error deleting post:", error.message);
+        res.status(500).json({error: 'Internal server error'});
+    }
+}
