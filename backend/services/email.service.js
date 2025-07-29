@@ -6,8 +6,8 @@ export const welcomeEmail = async (email, name) => {
         service: "gmail",
         auth: {
             user:process.env.EMAIL,
-            pass:process.env.EMAIL_PASSWORD
-        }
+            pass:process.env.EMAIL_PASSWORD,
+        },
     })
 
     const mailOption = {

@@ -11,6 +11,7 @@ export const subscribedUser = async (req, res) => {
         }
         const newSubscriber = new Subscriber({ email });
         await newSubscriber.save();
+        await welcomeEmail(email)
         res.status(201).json({ message: 'Subscription successful', subscriber: newSubscriber });
         await welcomeEmail(email)
     } catch (error) {
