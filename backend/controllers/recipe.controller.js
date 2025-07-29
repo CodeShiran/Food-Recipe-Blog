@@ -37,3 +37,34 @@ export const getAllRecipes = async (req, res) => {
         res.status(500).json({error: 'Internal server error'});
     }
 }
+
+export const editRecipe = async (req, res) => {
+    const {id} = req.params
+
+    const {title, description, content, nutritionalInfo, prepTime, cookTime, ingredients, directions, image} = req.body;
+    if (!title && !description && !content && !nutritionalInfo && !prepTime && !cookTime && !ingredients && !directions && !image) {
+        return res.status(400).json({message: 'Please fill at least one field to update'});
+    }
+
+    const updatedFields = {}
+    if (title) updatedFields.title = title;
+    if (description) updatedFields.description = description;
+    if (content) updatedFields.content = content;
+    if (nutritionalInfo) updatedFields.nutritionalInfo = nutritionalInfo;
+    if (prepTime) updatedFields.prepTime = prepTime;
+    if (cookTime) updatedFields.cookTime = cookTime;
+    if (ingredients) updatedFields.ingredients = ingredients;
+    if (directions) updatedFields.directions = directions;
+    if (image) updatedFields.image = image;
+
+    try {
+        const updatedRecipe = await Recipe.findByIdAndUpdate(id, updatedFields, { new: true });
+        if (!updatedRecipe) {
+            return res.status(404).json({message: 'Recipe not found'});
+        }
+        res.status(200).json({message: 'Recipe updated successfully', recipe: updatedRecipe});
+    } catch (error) {
+        console.error("Error editing recipe:", error.message);
+        res.status(500).json({error: 'Internal server error'});
+    }
+}
