@@ -83,3 +83,18 @@ export const editRecipe = async (req, res) => {
         res.status(500).json({error: 'Internal server error'});
     }
 }
+
+export const deleteRecipe = async (req, res) => {
+    const {id} = req.params
+
+    try {
+        const deletedRecipe = await Recipe.findByIdAndDelete(id)
+        if (!deletedRecipe) {
+            return res.status(404).json({message: 'Recipe not found'});
+        }
+        res.status(200).json({message: 'Recipe deleted successfully'});
+    } catch (error) {
+        console.error("Error deleting recipe:", error.message);
+        res.status(500).json({error: 'Internal server error'});
+    }
+}
