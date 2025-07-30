@@ -108,7 +108,7 @@ const BlogList = () => {
       post.personName.toLowerCase().includes(search.toLowerCase())
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
+  const postsPerPage = 5;
 
   const startIndex = (currentPage - 1) * postsPerPage;
   const endIndex = startIndex + postsPerPage;
@@ -126,7 +126,7 @@ const BlogList = () => {
         </p>
         <div className="flex flex-row items-center justify-between mt-6 rounded-2xl p-2 shadow-md border-1 border-gray-300 bg-white max-w-[600px] w-full">
           <input
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {setSearch(e.target.value); setCurrentPage(1);}} // Reset to first page on search
             type="text"
             className="p-2 focus:outline-none"
             placeholder="Search articles..."
@@ -141,7 +141,7 @@ const BlogList = () => {
       </div>
       <div className="mt-[75px] grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2 flex flex-col gap-6 w-full">
-          {filteredPosts.map((post) => (
+          {postsToShow.map((post) => (
             <BlogCard
               key={post.id}
               title={post.title}

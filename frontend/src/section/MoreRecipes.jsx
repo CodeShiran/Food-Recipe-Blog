@@ -15,7 +15,7 @@ const MoreRecipes = () => {
         </div>
         <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[25px] justify-items-center mt-[50px]'>
             {
-                moreRecipes.map((recipe, index) => (
+                moreRecipes.slice(0, 8).map((recipe, index) => (
                     <RecipeCard
                         key={index}
                         image={recipe.image}
