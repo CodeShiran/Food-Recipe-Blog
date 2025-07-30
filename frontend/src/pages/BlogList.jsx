@@ -1,101 +1,113 @@
-import React, { useState } from 'react'
-import BlogCard from '../components/BlogCard'
-import { assets } from '../assets/assets'
-import SmallCard from '../components/SmallCard'
-import EmailBox from '../components/EmailBox'
+import React, { useState } from "react";
+import BlogCard from "../components/BlogCard";
+import { assets } from "../assets/assets";
+import SmallCard from "../components/SmallCard";
+import EmailBox from "../components/EmailBox";
 
-const postData = [{
-    id:1,
+const postData = [
+  {
+    id: 1,
     title: "The Art of Cooking: A Journey Through Culinary Traditions",
-    description: "Explore the rich history and diverse traditions of cooking around the world. From ancient techniques to modern innovations, discover how cooking has evolved and continues to inspire chefs and home cooks alike.",
+    description:
+      "Explore the rich history and diverse traditions of cooking around the world. From ancient techniques to modern innovations, discover how cooking has evolved and continues to inspire chefs and home cooks alike.",
     postImg: assets.post1,
     personImg: "https://randomuser.me/api/portraits/men/47.jpg",
     personName: "John Doe",
-    date: "January 1, 2023"
-},
-{
-    id:2,
-    title: "Mastering the Grill: Tips and Techniques for Perfectly Grilled Meats",
-    description: "Unlock the secrets to grilling perfection with our expert tips and techniques. From choosing the right cuts of meat to mastering the grill temperature, elevate your outdoor cooking game and impress your guests.",
+    date: "January 1, 2023",
+  },
+  {
+    id: 2,
+    title:
+      "Mastering the Grill: Tips and Techniques for Perfectly Grilled Meats",
+    description:
+      "Unlock the secrets to grilling perfection with our expert tips and techniques. From choosing the right cuts of meat to mastering the grill temperature, elevate your outdoor cooking game and impress your guests.",
     postImg: assets.post2,
     personImg: "https://randomuser.me/api/portraits/women/26.jpg",
     personName: "Jane Smith",
-    date: "February 15, 2023"
-},
-{
-    id:3,
+    date: "February 15, 2023",
+  },
+  {
+    id: 3,
     title: "Vegetarian Delights: Creative and Delicious Meatless Recipes",
-    description: "Discover a world of flavor with our collection of vegetarian recipes. From hearty mains to delightful desserts, these dishes prove that you don't need meat to enjoy a satisfying meal.",
+    description:
+      "Discover a world of flavor with our collection of vegetarian recipes. From hearty mains to delightful desserts, these dishes prove that you don't need meat to enjoy a satisfying meal.",
     postImg: assets.post3,
     personImg: "https://randomuser.me/api/portraits/women/68.jpg",
     personName: "Emily Johnson",
-    date: "March 10, 2023"
-},
-{
-    id:4,
+    date: "March 10, 2023",
+  },
+  {
+    id: 4,
     title: "Baking Basics: Essential Techniques for Perfect Pastries",
-    description: "Master the art of baking with our essential techniques for creating perfect pastries. From flaky croissants to rich éclairs, learn the tips and tricks that will elevate your baking skills.",
+    description:
+      "Master the art of baking with our essential techniques for creating perfect pastries. From flaky croissants to rich éclairs, learn the tips and tricks that will elevate your baking skills.",
     postImg: assets.post4,
     personImg: "https://randomuser.me/api/portraits/men/75.jpg",
     personName: "Michael Brown",
-    date: "April 5, 2023"
-},{
-    id:5,
+    date: "April 5, 2023",
+  },
+  {
+    id: 5,
     title: "Global Flavors: Exploring International Cuisines",
-    description: "Embark on a culinary journey around the world with our exploration of international cuisines. Discover the unique ingredients, flavors, and cooking techniques that define each culture's culinary heritage.",
+    description:
+      "Embark on a culinary journey around the world with our exploration of international cuisines. Discover the unique ingredients, flavors, and cooking techniques that define each culture's culinary heritage.",
     postImg: assets.post5,
     personImg: "https://randomuser.me/api/portraits/women/75.jpg",
     personName: "Sophia Lee",
-    date: "May 20, 2023"
-}, {
-    id:6,
+    date: "May 20, 2023",
+  },
+  {
+    id: 6,
     title: "Healthy Eating: Nutritious Recipes for a Balanced Diet",
-    description: "Embrace a healthier lifestyle with our nutritious recipes designed for a balanced diet. From wholesome breakfasts to satisfying dinners, these dishes are packed with flavor and good-for-you ingredients.",
+    description:
+      "Embrace a healthier lifestyle with our nutritious recipes designed for a balanced diet. From wholesome breakfasts to satisfying dinners, these dishes are packed with flavor and good-for-you ingredients.",
     postImg: assets.post6,
     personImg: "https://randomuser.me/api/portraits/men/29.jpg",
     personName: "David Wilson",
-    date: "June 10, 2023"
-},
-{
-    
-    id:7,
+    date: "June 10, 2023",
+  },
+  {
+    id: 7,
     title: "Healthy Eating: Nutritious Recipes for a Balanced Diet",
-    description: "Embrace a healthier lifestyle with our nutritious recipes designed for a balanced diet. From wholesome breakfasts to satisfying dinners, these dishes are packed with flavor and good-for-you ingredients.",
+    description:
+      "Embrace a healthier lifestyle with our nutritious recipes designed for a balanced diet. From wholesome breakfasts to satisfying dinners, these dishes are packed with flavor and good-for-you ingredients.",
     postImg: assets.post6,
     personImg: "https://randomuser.me/api/portraits/men/29.jpg",
     personName: "David Wilson",
-    date: "June 10, 2023"
-}]
+    date: "June 10, 2023",
+  },
+];
 
 const recipes = [
-    {
-        id: 1,
-        title: "Healthy Japanese Fried Rice",
-        image: assets.chickenMeatballsSm,
-        person: "John Doe",
-    },
-    {
-        id: 2,
-        title: "Spaghetti Carbonara",
-        image: assets.creamyChickenSm,
-        person: "Jane Smith",
-    },
-    {
-        id: 3,
-        title: "Chicken Tikka Masala",
-        image: assets.potChickensm,
-        person: "Alice Johnson",
-    },
-]
+  {
+    id: 1,
+    title: "Healthy Japanese Fried Rice",
+    image: assets.chickenMeatballsSm,
+    person: "John Doe",
+  },
+  {
+    id: 2,
+    title: "Spaghetti Carbonara",
+    image: assets.creamyChickenSm,
+    person: "Jane Smith",
+  },
+  {
+    id: 3,
+    title: "Chicken Tikka Masala",
+    image: assets.potChickensm,
+    person: "Alice Johnson",
+  },
+];
 
 const BlogList = () => {
-    const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
-    const filteredPosts = postData.filter(post => 
-        post.title.toLowerCase().includes(search.toLowerCase()) ||
-        post.personName.toLowerCase().includes(search.toLowerCase())
-    )
-    const [currentPage, setCurrentPage] = useState(1);
+  const filteredPosts = postData.filter(
+    (post) =>
+      post.title.toLowerCase().includes(search.toLowerCase()) ||
+      post.personName.toLowerCase().includes(search.toLowerCase())
+  );
+  const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
 
   const startIndex = (currentPage - 1) * postsPerPage;
@@ -104,59 +116,78 @@ const BlogList = () => {
 
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
   return (
-    <div className='md:px-[50px] px-[25px]'>
-        <div className='mt-[50px] flex flex-col justify-center items-center mx-auto'>
-            <h1 className='text-4xl font-bold'>Blog & Article</h1>
-            <p className='text-sm text-center mt-4 text-gray-500'>Welcome to our blog section! Here you will find a variety of articles and posts related to food recipes, cooking tips, and culinary inspiration. <br /> Stay tuned for our latest updates!</p>
-            <div className='flex flex-row items-center justify-between mt-6 rounded-2xl p-2 shadow-md border-1 border-gray-300 bg-white max-w-[600px] w-full'>
-                <input onChange={e => setSearch(e.target.value)} type="text" className='p-2 focus:outline-none' placeholder='Search articles...' />
-                <button onClick={postsToShow} className='bg-black text-white w-[100px] rounded-md p-2 ml-2'>Search</button>
-            </div>
+    <div className="md:px-[50px] px-[25px]">
+      <div className="mt-[50px] flex flex-col justify-center items-center mx-auto">
+        <h1 className="text-4xl font-bold">Blog & Article</h1>
+        <p className="text-sm text-center mt-4 text-gray-500">
+          Welcome to our blog section! Here you will find a variety of articles
+          and posts related to food recipes, cooking tips, and culinary
+          inspiration. <br /> Stay tuned for our latest updates!
+        </p>
+        <div className="flex flex-row items-center justify-between mt-6 rounded-2xl p-2 shadow-md border-1 border-gray-300 bg-white max-w-[600px] w-full">
+          <input
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            className="p-2 focus:outline-none"
+            placeholder="Search articles..."
+          />
+          <button
+            onClick={postsToShow}
+            className="bg-black text-white w-[100px] rounded-md p-2 ml-2"
+          >
+            Search
+          </button>
         </div>
-        <div className='mt-[75px] grid grid-cols-1 md:grid-cols-3 gap-6'>
-            <div className='md:col-span-2 flex flex-col gap-6 w-full'>
-                {filteredPosts.map((post) => (
-                <BlogCard
-                    key={post.id}
-                    title={post.title}
-                    description={post.description}
-                    postImg={post.postImg}
-                    personImg={post.personImg}
-                    personName={post.personName}
-                    date={post.date}
-                />
+      </div>
+      <div className="mt-[75px] grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-2 flex flex-col gap-6 w-full">
+          {filteredPosts.map((post) => (
+            <BlogCard
+              key={post.id}
+              title={post.title}
+              description={post.description}
+              postImg={post.postImg}
+              personImg={post.personImg}
+              personName={post.personName}
+              date={post.date}
+            />
+          ))}
+        </div>
+        <div className="md:col-span-1">
+          <h2 className="text-xl font-bold mb-4">Related Recipes</h2>
+          <div className="grid grid-cols-1 gap-4">
+            {recipes.map((recipe) => (
+              <SmallCard
+                key={recipe.id}
+                image={recipe.image}
+                title={recipe.title}
+                person={recipe.person}
+              />
             ))}
-            </div>
-            <div className='md:col-span-1'>
-                <h2 className='text-xl font-bold mb-4'>Related Recipes</h2>
-                <div className='grid grid-cols-1 gap-4'>
-                    {recipes.map((recipe) => (
-                        <SmallCard
-                            key={recipe.id}
-                            image={recipe.image}
-                            title={recipe.title}
-                            person={recipe.person}
-                        />
-                    ))}
-                </div>
-            </div>
+          </div>
         </div>
-        <div className="text-center mt-[50px]">
+      </div>
+      <div className="text-center mt-[50px]">
         {[...Array(totalPages)].map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrentPage(i + 1)}
-            className={currentPage === i + 1 ? "font-bold" : ""}
+            className={`mx-1 px-4 py-2 rounded-lg border transition-all duration-200
+    ${
+      currentPage === i + 1
+        ? "bg-blue-500 text-white font-bold border-blue-500 shadow"
+        : "bg-white text-blue-500 border-gray-300 hover:bg-blue-100 hover:border-blue-400"
+    }`}
           >
             {i + 1}
           </button>
         ))}
       </div>
-        <div>
-            <EmailBox />
-        </div>
+      <div>
+        <EmailBox />
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default BlogList;

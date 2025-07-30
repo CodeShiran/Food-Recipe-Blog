@@ -59,6 +59,11 @@ const Navbar = () => {
             </li>
         </div>
         <div className='flex items-center gap-6 max-md:hidden'>
+            <Link to="/login">
+                <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200">
+                    Login
+                </button>
+            </Link>
             <FaFacebookF className='text-blue-600 hover:text-blue-700 transition-colors duration-200 cursor-pointer' />
             <FaTwitter className='text-sky-500 hover:text-sky-600 transition-colors duration-200 cursor-pointer' />
             <FaInstagram className='text-pink-600 hover:text-pink-700 transition-colors duration-200 cursor-pointer' />
