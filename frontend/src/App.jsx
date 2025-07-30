@@ -12,6 +12,7 @@ import Recipes from './pages/Recipes'
 import AiChat from './pages/AiChat'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import AddRecipeModal from './components/AddRecipeModal'
 
 const App = () => {
   const location = useLocation();
@@ -28,10 +29,11 @@ const App = () => {
         <Route path='/blog' element={<BlogList />} />
         <Route path='/blog/:id' element={<BlogPost />} />
         <Route path='/recipes' element={<Recipes />} />
-        <Route path='/recipe/:id' element={<RecipeDetails />} />
+        <Route path='/recipes/:id' element={<RecipeDetails />} />
         <Route path='/ai-chat' element={<AiChat />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/recipes/add-recipe' element={<AddRecipeModal />} />
       </Routes>
       {!isAiChat && !isLogin && !isSignup && <Footer />}
     </div>

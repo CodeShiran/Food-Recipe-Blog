@@ -24,17 +24,17 @@ const Signup = () => {
             <div className='relative z-20 max-w-[800px] w-full backdrop-blur-md  px-8 py-[50px] md:py-[100px] rounded-lg shadow-lg flex flex-col gap-6'>
                 <h1 className='text-2xl sm:text-4xl md:text-4xl font-bold text-white mb-6'>Create An Account</h1>
                 <div className='flex flex-row items-center justify-between gap-6'>
-                    <input type="text" placeholder='first name' className='border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
-                    <input type="text" placeholder='last name' className='border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
+                    <input type="text" placeholder='first name' className='placeholder:text-white border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
+                    <input type="text" placeholder='last name' className='placeholder:text-white border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
                 </div>
                 <div>
-                    <input type="text" placeholder='email' className='border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
+                    <input type="text" placeholder='email' className='placeholder:text-white border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
                 </div>
                 <div>
-                    <input type="text" placeholder='password' className='border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
+                    <input type="text" placeholder='password' className='placeholder:text-white border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
                 </div>
                 <div>
-                    <input type="text" placeholder='confirm password' className='border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
+                    <input type="text" placeholder='confirm password' className='placeholder:text-white border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
                 </div>
                 <div className='flex items-center justify-between mt-[10px]'>
                     <div className='flex items-center justify-start'>
