@@ -2,12 +2,17 @@ import React from "react";
 import assets from "../assets/assets";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
   return (
     <div className="relative h-screen w-full flex items-center md:flex-row flex-col md:justify-between justify-center px-[50px]">
+        <div className='absolute top-5 left-5 z-30 cursor-pointer pointer-events-auto'>
+                <Link to={"/"}>
+                    <h2 className='logo-font text-2xl text-white'>Foodieland.</h2>
+                </Link>
+            </div>
       <div className="absolute inset-0 bg-black/50 z-10">
         <img
           src={assets.loginBg}
