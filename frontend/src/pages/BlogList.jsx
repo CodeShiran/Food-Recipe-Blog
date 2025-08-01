@@ -139,7 +139,10 @@ const BlogList = () => {
           </button>
         </div>
       </div>
-      <div className="mt-[75px] grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="mt-2.5">
+        <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Add New Blog</button>
+      </div>
+      <div className="mt-[50px] grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2 flex flex-col gap-6 w-full">
           {postsToShow.map((post) => (
             <BlogCard
