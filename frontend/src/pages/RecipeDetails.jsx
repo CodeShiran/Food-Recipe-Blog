@@ -8,6 +8,7 @@ import EmailBox from '../components/EmailBox'
 import Footer from '../components/Footer'
 import moreRecipes from '../assets/moreRecipes';
 import RecipeCard from '../components/RecipeCard'
+import Chat from '../components/Chat';
 
 const nutritionData = [
   { label: 'Calories', value: '200 kcal' },
@@ -57,6 +58,7 @@ const recipes = [
 const RecipeDetails = () => {
   return (
     <div className='px-[25px] md:px-[50px]'>
+      <Chat />
         <div className='flex items-center justify-between py-[30px]'>
             <h1 className='text-3xl md:text-5xl font-semibold'>Healthy Japanese Fried Rice</h1>
             <div className='hidden md:flex items-center gap-6'>

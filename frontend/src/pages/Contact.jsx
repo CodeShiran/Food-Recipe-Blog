@@ -3,10 +3,12 @@ import assets from "../assets/assets";
 import EmailBox from "../components/EmailBox";
 import moreRecipes from "../assets/moreRecipes";
 import RecipeCard from "../components/RecipeCard";
+import Chat from "../components/Chat";
 
 const Contact = () => {
   return (
     <div className="md:px-[50px] px-[25px]">
+      <Chat />
       <div>
         <h1 className="text-4xl font-bold text-center">Contact Us</h1>
         <div className="flex flex-row gap-6 mt-6">

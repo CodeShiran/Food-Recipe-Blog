@@ -2,10 +2,12 @@ import React from 'react'
 import assets from '../assets/assets'
 import Email from '../section/Email'
 import EmailBox from '../components/EmailBox'
+import Chat from '../components/Chat'
 
 const About = () => {
   return (
     <div className='md:px-[50px] px-[25px]'>
+        <Chat />
         <div className='flex flex-col items-center mt-10'>
             <h1 className='text-4xl font-bold'>About Us</h1>
             <p className='mt-[25px] text-center text-gray-500 text-[20px]'>We are a team of food enthusiasts dedicated to sharing our love for cooking and delicious recipes. Our mission is to inspire home cooks of all skill levels to create amazing meals for their friends and family.</p>

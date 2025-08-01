@@ -4,6 +4,7 @@ import { assets } from "../assets/assets";
 import SmallCard from "../components/SmallCard";
 import EmailBox from "../components/EmailBox";
 import AddBlogModal from "../components/AddBlogModal";
+import Chat from "../components/Chat";
 
 const postData = [
   {
@@ -119,6 +120,7 @@ const BlogList = () => {
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
   return (
     <div className="md:px-[50px] px-[25px]">
+      <Chat />
       <div className="mt-[50px] flex flex-col justify-center items-center mx-auto">
         <h1 className="text-4xl font-bold">Blog & Article</h1>
         <p className="text-sm text-center mt-4 text-gray-500">

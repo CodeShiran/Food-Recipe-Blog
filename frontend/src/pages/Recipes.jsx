@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import moreRecipes from "../assets/moreRecipes";
 import RecipeCard from "../components/RecipeCard";
 import AddRecipeModal from "../components/AddRecipeModal";
+import Chat from "../components/Chat";
 
 const Recipes = () => {
   const [search, setSearch] = useState("");
@@ -23,6 +24,7 @@ const Recipes = () => {
 
   return (
     <div className="md:px-[50px] px-[25px]">
+      <Chat />
       <h1 className="text-4xl text-center mt-[50px]">Recipes</h1>
       <div className="flex flex-row items-center justify-between">
         <div>

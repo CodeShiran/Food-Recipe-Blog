@@ -4,10 +4,12 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import EmailBox from '../components/EmailBox';
 import moreRecipes from '../assets/moreRecipes';
 import RecipeCard from '../components/RecipeCard';
+import Chat from '../components/Chat';
 
 const BlogPost = () => {
   return (
     <div className='md:px-[50px] px-[25px]'>
+        <Chat />
         <div className='text-center mt-[50px] flex flex-col items-center justify-center'>
             <h1 className='text-4xl font-semibold'>Full Guide to Becoming a Professional Chef</h1>
             <div className='flex items-center flex-row gap-8 mt-[25px]'>
