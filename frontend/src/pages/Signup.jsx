@@ -17,7 +17,7 @@ const Signup = () => {
                 <img src={assets.loginBg} className='object-cover w-full h-full' alt="" />
             </div>
             <div className='relative z-20 max-w-[800px] w-full max-md:text-center'>
-                <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6'>
+                <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6'>
                     Welcome <br /> Back to <br /> Foodieland!
                 </h1>
             </div>
