@@ -21,6 +21,7 @@ import FruitSalad from './fruitsalad.png'
 import CookingWoman2 from './cookingwoman2.png'
 import bgVideo from './vecteezy_red-strawberries-falling-against-a-blue-background_2158717.mp4'
 import LoginBg from './loginbg.png'
+import Chat from './chat.png'
 
 
 export const assets = {
@@ -47,6 +48,7 @@ export const assets = {
   cookingWoman2: CookingWoman2,
   bgVideo: bgVideo,
   loginBg: LoginBg,
+  chat: Chat,
   // Add more assets here
 }
 

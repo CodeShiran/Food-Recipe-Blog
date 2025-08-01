@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import moreRecipes from "../assets/moreRecipes";
 import RecipeCard from "../components/RecipeCard";
-import { useNavigate } from "react-router-dom";
 import AddRecipeModal from "../components/AddRecipeModal";
 
 const Recipes = () => {
@@ -21,7 +20,6 @@ const Recipes = () => {
 
   const totalPages = Math.ceil(filteredPages.length / recipesPerPage);
 
-  const navigate = useNavigate()
 
   return (
     <div className="md:px-[50px] px-[25px]">
