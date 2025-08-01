@@ -1,7 +1,9 @@
 import Post from "../models/post.js";
 
 export const createPost = async (req, res) => {
-    const {title, author, content, description, image } = req.body
+    const {title, author, content, description } = req.body
+    const image = req.file ? req.file.path : null; // Get the image URL from the uploaded file
+
 
     if(!title || !author || !content || !description) {
         return res.status(400).json({message: 'Please fill all fields'})

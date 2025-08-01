@@ -2,7 +2,8 @@ import User from "../models/user.js"
 import jwt from 'jsonwebtoken'
 
 export const userRegister = async (req, res) => {
-    const {firstName, lastName, email, password, image} = req.body
+    const {firstName, lastName, email, password} = req.body
+    const image = req.file ? req.file.path : null; // Get the image URL from the uploaded file
 
     if(!firstName || !lastName || !email || !password) {
         return res.status(400).json({message: 'Please fill all fields'})
