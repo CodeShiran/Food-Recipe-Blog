@@ -3,6 +3,7 @@ import BlogCard from "../components/BlogCard";
 import { assets } from "../assets/assets";
 import SmallCard from "../components/SmallCard";
 import EmailBox from "../components/EmailBox";
+import AddBlogModal from "../components/AddBlogModal";
 
 const postData = [
   {
@@ -101,6 +102,7 @@ const recipes = [
 
 const BlogList = () => {
   const [search, setSearch] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const filteredPosts = postData.filter(
     (post) =>
@@ -140,8 +142,18 @@ const BlogList = () => {
         </div>
       </div>
       <div className="mt-2.5">
-        <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Add New Blog</button>
+        <button onClick={() => setShowModal(true)} className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Add New Blog</button>
       </div>
+      {showModal && (
+        <AddBlogModal
+          onSubmit={(newPost) => {
+            // Handle new post submission
+            console.log("New Post:", newPost);
+            setShowModal(false);
+          }}
+          onClose={() => setShowModal(false)}
+        />
+      )}
       <div className="mt-[50px] grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2 flex flex-col gap-6 w-full">
           {postsToShow.map((post) => (
