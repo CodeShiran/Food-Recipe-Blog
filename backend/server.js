@@ -5,11 +5,15 @@ import userRouter from './routes/user.route.js'
 import postsRouter from './routes/posts.route.js'
 import recipeRouter from './routes/recipe.route.js'
 import emailRouter from './routes/email.route.js'
+import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 
 const app = express()
 
 app.use(express.json())
+app.use(cors())
+app.use(cookieParser())
 
 
 app.listen(3000, () => {

@@ -7,7 +7,7 @@ const userRouter = express.Router()
 
 userRouter.post('/register', userRegister)
 userRouter.post('/login', loginUser)
-userRouter.post('/logout', authMiddleware, logoutUser)
+userRouter.post('/logout', logoutUser)
 userRouter.get('/', authMiddleware, getAllUsers)
 userRouter.put('/:id', authMiddleware, upload.single('image'), EditUser)
 userRouter.delete('/:id', authMiddleware, deleteUser)

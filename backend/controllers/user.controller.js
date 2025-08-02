@@ -47,6 +47,13 @@ export const loginUser = async (req, res) => {
             email: user.email
         }, process.env.JWT_SECRET, { expiresIn: '1h' })
 
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+            sameSite: 'Strict', // Prevent CSRF attacks
+            maxAge: 3600000 // 1 hour
+        })
+
         res.status(200).json({ message: 'User logged in successfully', data: { id: user._id, email: user.email, token } })
     } catch (error) {
         console.error("Error during user login:", error.message);
@@ -56,6 +63,16 @@ export const loginUser = async (req, res) => {
 
 
 export const logoutUser = async (req, res) => {
+
+    if(!req.cookies.token) return res.status(401).json({message: 'User not logged in'})
+
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+        sameSite: 'Strict' // Prevent CSRF attacks
+    })
+
+
     res.status(200).json({ message: "User logged out successfully" });
 }
 
