@@ -5,80 +5,10 @@ import SmallCard from "../components/SmallCard";
 import EmailBox from "../components/EmailBox";
 import AddBlogModal from "../components/AddBlogModal";
 import Chat from "../components/Chat";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
-const postData = [
-  {
-    id: 1,
-    title: "The Art of Cooking: A Journey Through Culinary Traditions",
-    description:
-      "Explore the rich history and diverse traditions of cooking around the world. From ancient techniques to modern innovations, discover how cooking has evolved and continues to inspire chefs and home cooks alike.",
-    postImg: assets.post1,
-    personImg: "https://randomuser.me/api/portraits/men/47.jpg",
-    personName: "John Doe",
-    date: "January 1, 2023",
-  },
-  {
-    id: 2,
-    title:
-      "Mastering the Grill: Tips and Techniques for Perfectly Grilled Meats",
-    description:
-      "Unlock the secrets to grilling perfection with our expert tips and techniques. From choosing the right cuts of meat to mastering the grill temperature, elevate your outdoor cooking game and impress your guests.",
-    postImg: assets.post2,
-    personImg: "https://randomuser.me/api/portraits/women/26.jpg",
-    personName: "Jane Smith",
-    date: "February 15, 2023",
-  },
-  {
-    id: 3,
-    title: "Vegetarian Delights: Creative and Delicious Meatless Recipes",
-    description:
-      "Discover a world of flavor with our collection of vegetarian recipes. From hearty mains to delightful desserts, these dishes prove that you don't need meat to enjoy a satisfying meal.",
-    postImg: assets.post3,
-    personImg: "https://randomuser.me/api/portraits/women/68.jpg",
-    personName: "Emily Johnson",
-    date: "March 10, 2023",
-  },
-  {
-    id: 4,
-    title: "Baking Basics: Essential Techniques for Perfect Pastries",
-    description:
-      "Master the art of baking with our essential techniques for creating perfect pastries. From flaky croissants to rich éclairs, learn the tips and tricks that will elevate your baking skills.",
-    postImg: assets.post4,
-    personImg: "https://randomuser.me/api/portraits/men/75.jpg",
-    personName: "Michael Brown",
-    date: "April 5, 2023",
-  },
-  {
-    id: 5,
-    title: "Global Flavors: Exploring International Cuisines",
-    description:
-      "Embark on a culinary journey around the world with our exploration of international cuisines. Discover the unique ingredients, flavors, and cooking techniques that define each culture's culinary heritage.",
-    postImg: assets.post5,
-    personImg: "https://randomuser.me/api/portraits/women/75.jpg",
-    personName: "Sophia Lee",
-    date: "May 20, 2023",
-  },
-  {
-    id: 6,
-    title: "Healthy Eating: Nutritious Recipes for a Balanced Diet",
-    description:
-      "Embrace a healthier lifestyle with our nutritious recipes designed for a balanced diet. From wholesome breakfasts to satisfying dinners, these dishes are packed with flavor and good-for-you ingredients.",
-    postImg: assets.post6,
-    personImg: "https://randomuser.me/api/portraits/men/29.jpg",
-    personName: "David Wilson",
-    date: "June 10, 2023",
-  },
-  {
-    id: 7,
-    title: "Healthy Eating: Nutritious Recipes for a Balanced Diet",
-    description:
-      "Embrace a healthier lifestyle with our nutritious recipes designed for a balanced diet. From wholesome breakfasts to satisfying dinners, these dishes are packed with flavor and good-for-you ingredients.",
-    postImg: assets.post6,
-    personImg: "https://randomuser.me/api/portraits/men/29.jpg",
-    personName: "David Wilson",
-    date: "June 10, 2023",
-  },
-];
+
 
 const recipes = [
   {
@@ -102,10 +32,11 @@ const recipes = [
 ];
 
 const BlogList = () => {
+  const { blogPosts } = useContext(AppContext);
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const filteredPosts = postData.filter(
+  const filteredPosts = blogPosts.filter(
     (post) =>
       post.title.toLowerCase().includes(search.toLowerCase()) ||
       post.personName.toLowerCase().includes(search.toLowerCase())
@@ -160,13 +91,13 @@ const BlogList = () => {
         <div className="md:col-span-2 flex flex-col gap-6 w-full">
           {postsToShow.map((post) => (
             <BlogCard
-              key={post.id}
+              key={post._id}
               title={post.title}
               description={post.description}
-              postImg={post.postImg}
+              postImg={post.image}
               personImg={post.personImg}
               personName={post.personName}
-              date={post.date}
+              date={new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
             />
           ))}
         </div>
