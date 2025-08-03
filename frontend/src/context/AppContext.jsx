@@ -9,6 +9,7 @@ export const AppContext = createContext();
 const ContextProvider = ({children}) => {
 
     const [blogPosts, setBlogPosts] = useState([]);
+    const [recipes, setRecipes] = useState([])
 
     useEffect(() => {
         const fetchAllBlogPosts = async () => {
@@ -25,10 +26,25 @@ const ContextProvider = ({children}) => {
         fetchAllBlogPosts();
     }, [])
 
+    useEffect(() => {
+        const fetchAllRecipes = async () => {
+            try {
+                const url = 'http://localhost:3000/api/recipes'
+                const response = await axios.get(url)
+                setRecipes(response.data.recipes)
+                console.log("Recipes fetched successfully:", response.data);
+
+            } catch (error) {
+                console.error("Error Fetching data", error.message)
+            }
+        }
+        fetchAllRecipes();
+    }, [])
+
     
 
     return (
-        <AppContext.Provider value={{blogPosts}}>
+        <AppContext.Provider value={{blogPosts, recipes}}>
             {children}
         </AppContext.Provider>
     )

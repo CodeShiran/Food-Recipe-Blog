@@ -5,10 +5,10 @@ import upload from '../middlewares/upload.js'
 
 const recipeRouter = express.Router()
 
-recipeRouter.post('/create', authMiddleware, upload.single('image'), createRecipe)
-recipeRouter.get('/', authMiddleware, getAllRecipes)
+recipeRouter.post('/create', upload.single('image'), createRecipe)
+recipeRouter.get('/', getAllRecipes)
 recipeRouter.get('/:id', authMiddleware, getRecipe)
-recipeRouter.put('/edit/:id', authMiddleware, upload.single('image'), editRecipe)
+recipeRouter.put('/edit/:id', authMiddleware, editRecipe)
 recipeRouter.delete('/delete/:id', authMiddleware, deleteRecipe)
 
 

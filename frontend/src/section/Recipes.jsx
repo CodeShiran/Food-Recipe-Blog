@@ -1,8 +1,11 @@
 import React from 'react'
 import RecipeCard from '../components/RecipeCard'
-import recipes from '../assets/recipes'
+import { useContext } from 'react'
+import { AppContext } from '../context/AppContext'
 
 const Recipes = () => {
+
+  const {recipes} = useContext(AppContext)
   return (
     <div>
         <div className='flex flex-col items-center justify-center gap-4 mt-[100px]'>
@@ -11,12 +14,12 @@ const Recipes = () => {
         </div>
         <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[25px] justify-items-center mt-[75px]'>
              {
-                recipes.map((recipe, index) => (
+                recipes.slice(0,8).map((recipe, index) => (
                     <RecipeCard 
                         key={index}
                         image={recipe.image}
-                        name={recipe.name}
-                        time={recipe.time}
+                        name={recipe.title}
+                        time={recipe.cookTime}
                         type={recipe.type}
                         bgColor="bg-[#E7F9FD]"
                     />

@@ -1,16 +1,44 @@
 import Recipe from "../models/recipe.js";
 
 export const createRecipe = async (req, res) => {
-    const {title, description, content, nutritionalInfo, prepTime, cookTime, ingredients, directions, author} = req.body;
-    const image = req.file ? req.file.path : null; // Get the image URL from the uploaded file
-    if (!title || !description || !content || !nutritionalInfo || !prepTime || !cookTime || !ingredients || !directions) {
-        return res.status(400).json({message: 'Please fill all fields'});
-    }
-
     try {
+        const body = req.body || {};
+        const {
+            title,
+            description,
+            type,
+            content,
+            prepTime,
+            cookTime,
+            author
+        } = body;
+
+        // Parse JSON fields safely
+        const nutritionalInfo = typeof body.nutritionalInfo === "string"
+  ? JSON.parse(body.nutritionalInfo)
+  : body.nutritionalInfo || null;
+
+const ingredients = typeof body.ingredients === "string"
+  ? JSON.parse(body.ingredients)
+  : body.ingredients || null;
+
+const directions = typeof body.directions === "string"
+  ? JSON.parse(body.directions)
+  : body.directions || null;
+
+        const image = req.file ? req.file.path : undefined;
+
+        if (
+  !title || !description || !type || !content || !nutritionalInfo ||
+  !prepTime || !cookTime || !ingredients || !directions
+) {
+  return res.status(400).json({message: 'Please fill all fields'});
+}
+
         const newRecipe = new Recipe({
             title,
             description,
+            type,
             content,
             nutritionalInfo,
             prepTime,
@@ -22,10 +50,15 @@ export const createRecipe = async (req, res) => {
         });
 
         await newRecipe.save();
+        if (req.file) {
+  console.log("File uploaded to Cloudinary:", req.file.path); // Cloudinary URL
+} else {
+  console.log("No file uploaded.");
+}
         res.status(201).json({message: 'Recipe created successfully', recipe: newRecipe});
     } catch (error) {
         console.error("Error creating recipe:", error.message);
-        res.status(500).json({error: 'Internal server error'});
+        res.status(500).json({message: "Internal server error"});
     }
 }
 

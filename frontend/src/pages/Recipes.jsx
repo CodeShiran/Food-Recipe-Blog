@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import moreRecipes from "../assets/moreRecipes";
 import RecipeCard from "../components/RecipeCard";
 import AddRecipeModal from "../components/AddRecipeModal";
 import Chat from "../components/Chat";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 const Recipes = () => {
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false)
 
-  const filteredPages = moreRecipes.filter((recipe) =>
-    recipe.name.toLowerCase().includes(search.toLowerCase())
+  const {recipes} = useContext(AppContext)
+
+  const filteredPages = recipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(search.toLowerCase())
   );
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,8 +66,8 @@ const Recipes = () => {
           <RecipeCard
             key={index}
             image={recipe.image}
-            name={recipe.name}
-            time={recipe.time}
+            name={recipe.title}
+            time={recipe.cookTime}
             type={recipe.type}
             bgColor="bg-[#ffffff]"
           />

@@ -9,6 +9,10 @@ const recipeSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    type: {
+        type: String,
+        enum: ["breakfast", "lunch", "dinner", "snack", "dessert"],
+    },
     content : {
         type: String,
         required: true,
