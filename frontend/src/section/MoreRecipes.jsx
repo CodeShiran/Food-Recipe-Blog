@@ -1,5 +1,4 @@
 import React from 'react'
-import moreRecipes from '../assets/moreRecipes'
 import RecipeCard from '../components/RecipeCard'
 import { useContext } from 'react'
 import { AppContext } from '../context/AppContext'

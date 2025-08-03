@@ -28,6 +28,9 @@ const directions = typeof body.directions === "string"
 
         const image = req.file ? req.file.path : undefined;
 
+
+    console.log("Body", req.body)
+        console.log("File", req.file);
         if (
   !title || !description || !type || !content || !nutritionalInfo ||
   !prepTime || !cookTime || !ingredients || !directions
@@ -54,7 +57,10 @@ const directions = typeof body.directions === "string"
   console.log("File uploaded to Cloudinary:", req.file.path); // Cloudinary URL
 } else {
   console.log("No file uploaded.");
+    
 }
+        
+        console.log("Recipe created successfully:", newRecipe);
         res.status(201).json({message: 'Recipe created successfully', recipe: newRecipe});
     } catch (error) {
         console.error("Error creating recipe:", error.message);

@@ -41,10 +41,25 @@ const ContextProvider = ({children}) => {
         fetchAllRecipes();
     }, [])
 
+    const addRecipe = async (recipeData) => {
+        try {
+            const url = 'http://localhost:3000/api/recipes/create'
+            const response = await axios.post(url, recipeData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            setRecipes((prevRecipes) => [...prevRecipes, response.data.recipe])
+            console.log("Recipe added successfully:", response.data);
+        } catch (error) {
+            console.error("Error adding recipe:", error.message);
+        }
+    }
+
     
 
     return (
-        <AppContext.Provider value={{blogPosts, recipes}}>
+        <AppContext.Provider value={{blogPosts, recipes, addRecipe}}>
             {children}
         </AppContext.Provider>
     )

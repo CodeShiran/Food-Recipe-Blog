@@ -7,13 +7,14 @@ const initialNutrition = { calories: "", protein: "", carbs: "", fats: "" };
 const AddRecipeModal = ({ onSubmit, onClose }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [type, setType] = useState("");
   const [content, setContent] = useState("");
   const [nutritionalInfo, setNutritionalInfo] = useState(initialNutrition);
   const [prepTime, setPrepTime] = useState("");
   const [cookTime, setCookTime] = useState("");
   const [ingredients, setIngredients] = useState([initialIngredient]);
   const [directions, setDirections] = useState([initialDirection]);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [author, setAuthor] = useState(""); // Should be user id
 
   const handleIngredientChange = (idx, field, value) => {
@@ -39,23 +40,28 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({
-      title,
-      description,
-      content,
-      nutritionalInfo: {
-        calories: Number(nutritionalInfo.calories),
-        protein: Number(nutritionalInfo.protein),
-        carbs: Number(nutritionalInfo.carbs),
-        fats: Number(nutritionalInfo.fats),
-      },
-      prepTime: Number(prepTime),
-      cookTime: Number(cookTime),
-      ingredients,
-      directions,
-      image,
-      author,
-    });
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("type", type);
+    formData.append("content", content);
+    formData.append("nutritionalInfo", JSON.stringify({
+      calories: Number(nutritionalInfo.calories),
+      protein: Number(nutritionalInfo.protein),
+      carbs: Number(nutritionalInfo.carbs),
+      fats: Number(nutritionalInfo.fats),
+    }));
+    formData.append("prepTime", prepTime);
+    formData.append("cookTime", cookTime);
+    formData.append("ingredients", JSON.stringify(ingredients));
+    formData.append("directions", JSON.stringify(directions));
+    if (image) formData.append("image", image); // image should be a File object
+    formData.append("author", author);
+
+  onSubmit(formData);
+  console.log({title, description, content, nutritionalInfo, prepTime, cookTime, ingredients, directions, author, image});
+  onClose();
   };
 
   return (
@@ -67,7 +73,15 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
         <h2 className="text-2xl font-bold mb-4">Add Recipe</h2>
         <input value={title} onChange={e => setTitle(e.target.value)} required placeholder="Title" className="border p-2 rounded" />
         <input value={description} onChange={e => setDescription(e.target.value)} required placeholder="Description" className="border p-2 rounded" />
-        <textarea value={content} onChange={e => setContent(e.target.value)} required placeholder="Content" className="border p-2 rounded" />
+        <select value={type} onChange={e => setType(e.target.value)} required className="border p-2 rounded">
+          <option value="">Select type</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snack">Snack</option>
+          <option value="dessert">Dessert</option>
+        </select>
+        <textarea value={content} rows={6} onChange={e => setContent(e.target.value)} required placeholder="Content" className="border p-2 rounded min-h-[120px] resize-y" />
         <div>
           <h3 className="font-semibold">Nutritional Info</h3>
           <input value={nutritionalInfo.calories} onChange={e => handleNutritionChange("calories", e.target.value)} required placeholder="Calories" type="number" className="border p-2 rounded mr-2" />
@@ -96,7 +110,7 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
           ))}
           <button type="button" onClick={addDirection} className="text-blue-500 underline">+ Add Step</button>
         </div>
-        <input value={image} onChange={e => setImage(e.target.value)} placeholder="Image URL" className="border p-2 rounded" />
+        <input type='file' accept='image/*' onChange={e => setImage(e.target.files[0])} className="border p-2 rounded" />
         <input value={author} onChange={e => setAuthor(e.target.value)} required placeholder="Author ID" className="border p-2 rounded" />
         <div className="flex gap-4 mt-4">
           <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Add Recipe</button>

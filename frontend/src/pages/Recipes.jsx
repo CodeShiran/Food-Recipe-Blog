@@ -24,6 +24,7 @@ const Recipes = () => {
 
   const totalPages = Math.ceil(filteredPages.length / recipesPerPage);
 
+  const {addRecipe} = useContext(AppContext)
 
   return (
     <div className="md:px-[50px] px-[25px]">
@@ -48,7 +49,7 @@ const Recipes = () => {
             className="border border-gray-300 p-2"
           />
           <button
-            onClick={filteredPages}
+            onClick={() => filteredPages}
             className="bg-black text-white p-2 hover:bg-gray-700 hover:shadow-sm"
           >
             Search
@@ -59,7 +60,7 @@ const Recipes = () => {
         <button onClick={() => setShowModal(true)} className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
           Add New Recipe
         </button>
-        {showModal && <AddRecipeModal onClose={() => setShowModal(false)} />}
+        {showModal && <AddRecipeModal onSubmit={addRecipe} onClose={() => setShowModal(false)} />}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[25px] justify-items-center mt-[50px]">
         {recipesToShow.map((recipe, index) => (
