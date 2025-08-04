@@ -56,10 +56,21 @@ const ContextProvider = ({children}) => {
         }
     }
 
+    const aiChat = async (foodName) => {
+        try {
+            const url = 'http://localhost:3000/api/ai-chat'
+            const response = await axios.post(url, { foodName })
+            console.log("AI chat response:", response.data);
+            return response.data.recipe; // Assuming the response contains a 'response' field with the AI's reply
+        } catch (error) {
+            console.error("Error in AI chat:", error.message);
+        }
+    }
+
     
 
     return (
-        <AppContext.Provider value={{blogPosts, recipes, addRecipe}}>
+        <AppContext.Provider value={{blogPosts, recipes, addRecipe, aiChat}}>
             {children}
         </AppContext.Provider>
     )

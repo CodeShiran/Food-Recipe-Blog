@@ -95,8 +95,8 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
           <h3 className="font-semibold">Ingredients</h3>
           {ingredients.map((ing, idx) => (
             <div key={idx} className="flex gap-2 mb-2">
-              <input value={ing.name} onChange={e => handleIngredientChange(idx, "name", e.target.value)} required placeholder="Name" className="border p-2 rounded" />
-              <input value={ing.quantity} onChange={e => handleIngredientChange(idx, "quantity", e.target.value)} placeholder="Quantity" className="border p-2 rounded" />
+              <input type='number' value={ing.name} onChange={e => handleIngredientChange(idx, "name", e.target.value)} required placeholder="Name" className="border p-2 rounded" />
+              <input type='number' value={ing.quantity} onChange={e => handleIngredientChange(idx, "quantity", e.target.value)} placeholder="Quantity" className="border p-2 rounded" />
             </div>
           ))}
           <button type="button" onClick={addIngredient} className="text-blue-500 underline">+ Add Ingredient</button>

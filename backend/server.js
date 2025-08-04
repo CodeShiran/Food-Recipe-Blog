@@ -21,7 +21,7 @@ app.listen(3000, () => {
     console.log('Server is running on port 3000')
 })
 
-app.use('/api', aiRouter)
+app.use('/api/ai-chat', aiRouter)
 app.use('/api/user', userRouter)
 app.use('/api/posts', postsRouter)
 app.use('/api/recipes', recipeRouter)

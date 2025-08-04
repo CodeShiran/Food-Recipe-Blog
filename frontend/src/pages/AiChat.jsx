@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FaCircleArrowUp } from "react-icons/fa6";
 import assets from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { PiHamburgerBold } from "react-icons/pi";
 import TypewriterComponent from "typewriter-effect";
+import { AppContext } from "../context/AppContext";
 
 const AiChat = () => {
   const videoRef = useRef(null);
@@ -17,6 +18,7 @@ const AiChat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [waiting, setWaiting] = useState(false);
+  const {aiChat} = useContext(AppContext)
 
   const handleSend = () => {
   if (input.trim() === "") return;
@@ -24,12 +26,11 @@ const AiChat = () => {
   setMessages(prev => [...prev, userMsg]);
   setInput("");
   setWaiting(true);
-  setTimeout(() => {
-    const aiMsg = { text: "This is a response from AI.", sender: "ai" };
+  aiChat(input).then(response => {
+    const aiMsg = { text: response, sender: "ai" };
     setMessages(prev => [...prev, aiMsg]);
-    // Keep waiting true for typewriter effect
-    setTimeout(() => setWaiting(false), 1200); // Adjust this delay to match your typewriter speed
-  }, 500); // This is the "thinking" delay before AI responds
+    setWaiting(false);
+  });
 };
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -86,8 +87,7 @@ const AiChat = () => {
   // Show typewriter for the last AI message if waiting
   if (
     msg.sender === "ai" &&
-    idx === messages.length - 1 &&
-    waiting
+    idx === messages.length - 1 
   ) {
     return (
       <div
@@ -95,11 +95,16 @@ const AiChat = () => {
         className="self-end bg-red-500/20 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-2xl shadow-md max-w-[80%] break-words"
       >
         <TypewriterComponent
+        onInit={(typewriter) =>
+          typewriter
+            .typeString(msg.text)
+            .start()
+        }
           options={{
-            strings: [msg.text],
             autoStart: true,
-            delay: 30,
+            delay: 10,
             cursor: "",
+            loop: false,
           }}
         />
       </div>

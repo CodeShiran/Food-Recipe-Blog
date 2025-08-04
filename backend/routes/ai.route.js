@@ -4,6 +4,6 @@ import { SearchFoods } from '../controllers/ai.controller.js'
 
 const aiRouter = express.Router()
 
-aiRouter.post('/ai-chat', SearchFoods)
+aiRouter.post('/', SearchFoods)
 
 export default aiRouter
