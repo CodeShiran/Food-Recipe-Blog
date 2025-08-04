@@ -11,6 +11,21 @@ const Navbar = () => {
     const handleMenuToggle = () => {
         setMenu(!menu);
     }
+  // Mock user state (replace with real auth context or props)
+  const isLoggedIn = true; // Set to true if user is logged in
+  const user = {
+    name: "John Doe",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg" // Replace with real user avatar
+  };
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+
+  const handleProfileClick = () => setShowProfileMenu((prev) => !prev);
+  const handleLogout = () => {
+    // Add your logout logic here
+    setShowProfileMenu(false);
+    alert("Logged out!");
+  };
+
   return (
     <div className='flex items-center justify-between px-[50px] py-[30px] border-b-1 border-gray-300'>
         <div>
@@ -59,11 +74,33 @@ const Navbar = () => {
             </li>
         </div>
         <div className='flex items-center gap-6 max-md:hidden'>
-            <Link to="/login">
+            {isLoggedIn ? (
+              <div className="relative">
+                <img
+                  src={user.avatar}
+                  alt="Profile"
+                  className="w-10 h-10 rounded-full border-2 border-blue-500 cursor-pointer object-cover"
+                  onClick={handleProfileClick}
+                />
+                {showProfileMenu && (
+                  <div className="absolute right-0 mt-2 w-40 bg-white rounded shadow-lg z-50">
+                    <div className="px-4 py-2 border-b text-gray-700">{user.name}</div>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 hover:bg-gray-100 text-red-500"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link to="/login">
                 <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200">
-                    Login
+                  Login
                 </button>
-            </Link>
+              </Link>
+            )}
             <FaFacebookF className='text-blue-600 hover:text-blue-700 transition-colors duration-200 cursor-pointer' />
             <FaTwitter className='text-sky-500 hover:text-sky-600 transition-colors duration-200 cursor-pointer' />
             <FaInstagram className='text-pink-600 hover:text-pink-700 transition-colors duration-200 cursor-pointer' />
@@ -82,11 +119,30 @@ const Navbar = () => {
                 <li className='cursor-pointer hover:text-blue-500'>Contact</li>
                 <li className='cursor-pointer hover:text-blue-500'>About Us</li>
                 <li>
+                  {isLoggedIn ? (
+                    <div className="flex flex-col items-center gap-2">
+                      <img
+                        src={user.avatar}
+                        alt="Profile"
+                        className="w-12 h-12 rounded-full border-2 border-blue-500 object-cover mb-1"
+                      />
+                      <div className="text-gray-700 mb-1">{user.name}</div>
+                      <button
+                        onClick={() => {
+                          setShowProfileMenu(false); handleLogout(); handleMenuToggle();
+                        }}
+                        className="w-full text-center px-4 py-2 hover:bg-gray-100 text-red-500"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  ) : (
                     <Link to="/login">
-                        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200">
-                            Login
-                        </button>
+                      <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200">
+                        Login
+                      </button>
                     </Link>
+                  )}
                 </li>
             </ul>
         </div>
