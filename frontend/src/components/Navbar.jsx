@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 
 
 const Navbar = () => {
@@ -12,11 +13,9 @@ const Navbar = () => {
         setMenu(!menu);
     }
   // Mock user state (replace with real auth context or props)
-  const isLoggedIn = true; // Set to true if user is logged in
-  const user = {
-    name: "John Doe",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg" // Replace with real user avatar
-  };
+  const {login, currentUser} = useContext(AppContext)
+  const isLoggedIn = !! currentUser; // Set to true if user is logged in
+  const user = currentUser
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const handleProfileClick = () => setShowProfileMenu((prev) => !prev);

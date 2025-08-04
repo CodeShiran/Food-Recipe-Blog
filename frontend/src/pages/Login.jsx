@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import assets from "../assets/assets";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useContext(AppContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    const res = await login(email, password)
+    if( res && res.message === 'User logged in successfully') {
+      alert("Login successful!");
+      navigate("/");
+    }
+    else{
+      alert("Login failed. Please check your credentials.");
+    }
+  };
   return (
     <div className="relative h-screen w-full flex items-center md:flex-row flex-col md:justify-between justify-center px-[50px]">
         <div className='absolute top-5 left-5 z-30 cursor-pointer pointer-events-auto'>
@@ -31,6 +46,8 @@ const Login = () => {
           <input
             type="email"
             placeholder="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             className="w-full placeholder:text-white flex-3/4 bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none"
           />
         </div>
@@ -39,6 +56,8 @@ const Login = () => {
           <input
             type="password"
             placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
             className="placeholder:text-white w-full md:flex-3/4 bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none"
           />
         </div>
@@ -60,7 +79,7 @@ const Login = () => {
               </button>
             </div>
           </div>
-          <button className="bg-[#F2F2F2] text-[#828282] py-2 px-8 rounded-2xl hover:bg-[#828282] hover:text-[#F2F2F2] transition-all duration-300 cursor-pointer self-end md:self-end md:ml-8">
+          <button onClick={handleLogin} className="bg-[#F2F2F2] text-[#828282] py-2 px-8 rounded-2xl hover:bg-[#828282] hover:text-[#F2F2F2] transition-all duration-300 cursor-pointer self-end md:self-end md:ml-8">
             Login
           </button>
         </div>

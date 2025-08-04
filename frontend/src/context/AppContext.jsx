@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 
+
 export const AppContext = createContext();
 
 
@@ -10,6 +11,7 @@ const ContextProvider = ({children}) => {
 
     const [blogPosts, setBlogPosts] = useState([]);
     const [recipes, setRecipes] = useState([])
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
         const fetchAllBlogPosts = async () => {
@@ -67,10 +69,22 @@ const ContextProvider = ({children}) => {
         }
     }
 
+    const login = async (email, password) => {
+        try {
+            const url = 'http://localhost:3000/api/users/login'
+            const response = await axios.post(url, { email, password }, { withCredentials: true })
+            console.log("Login successful:", response.data);
+            setCurrentUser(response.data.user); 
+            return response.data; // Assuming the response contains user data or a token
+        } catch (error) {
+            console.error("Error logging in:", error.message);
+        }
+    }
+
     
 
     return (
-        <AppContext.Provider value={{blogPosts, recipes, addRecipe, aiChat}}>
+        <AppContext.Provider value={{blogPosts, recipes, addRecipe, aiChat, login, currentUser}}>
             {children}
         </AppContext.Provider>
     )
