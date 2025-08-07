@@ -13,7 +13,7 @@ const Navbar = () => {
         setMenu(!menu);
     }
   // Mock user state (replace with real auth context or props)
-  const {login, currentUser} = useContext(AppContext)
+  const {currentUser} = useContext(AppContext)
   const isLoggedIn = !! currentUser; // Set to true if user is logged in
   const user = currentUser
   const [showProfileMenu, setShowProfileMenu] = useState(false);

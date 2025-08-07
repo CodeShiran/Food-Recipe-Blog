@@ -54,7 +54,7 @@ export const loginUser = async (req, res) => {
             maxAge: 3600000 // 1 hour
         })
 
-        res.status(200).json({ message: 'User logged in successfully', data: { id: user._id, email: user.email, token } })
+        res.status(200).json({ message: 'User logged in successfully', data: { id: user._id, email: user.email, name:user.firstName, image:user.image,  token } })
     } catch (error) {
         console.error("Error during user login:", error.message);
         res.status(500).json({error: 'Internal server error'});

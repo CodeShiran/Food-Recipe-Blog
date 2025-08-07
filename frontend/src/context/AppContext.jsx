@@ -74,7 +74,7 @@ const ContextProvider = ({children}) => {
             const url = 'http://localhost:3000/api/users/login'
             const response = await axios.post(url, { email, password }, { withCredentials: true })
             console.log("Login successful:", response.data);
-            setCurrentUser(response.data.user); 
+            setCurrentUser(response.data.data); 
             return response.data; // Assuming the response contains user data or a token
         } catch (error) {
             console.error("Error logging in:", error.message);
