@@ -28,6 +28,22 @@ const ContextProvider = ({children}) => {
         fetchAllBlogPosts();
     }, [])
 
+
+    const addBlog = async (blogPost) => {
+        try {
+            const url = 'http://localhost:3000/api/posts/create'
+            const response = await axios.post(url, blogPost, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            setBlogPosts((prevPosts) => [...prevPosts, response.data.post])
+            console.log("Blog post added successfully:", response.data);
+        } catch (error) {
+            console.error("Error adding blog post:", error.message);
+        }
+    }
+
     useEffect(() => {
         const fetchAllRecipes = async () => {
             try {
@@ -84,7 +100,7 @@ const ContextProvider = ({children}) => {
     
 
     return (
-        <AppContext.Provider value={{blogPosts, recipes, addRecipe, aiChat, login, currentUser}}>
+        <AppContext.Provider value={{blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog}}>
             {children}
         </AppContext.Provider>
     )

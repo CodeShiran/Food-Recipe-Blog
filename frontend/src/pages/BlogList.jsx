@@ -32,14 +32,14 @@ const recipes = [
 ];
 
 const BlogList = () => {
-  const { blogPosts } = useContext(AppContext);
+  const { blogPosts, addBlog } = useContext(AppContext);
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const filteredPosts = blogPosts.filter(
     (post) =>
-      post.title.toLowerCase().includes(search.toLowerCase()) ||
-      post.personName.toLowerCase().includes(search.toLowerCase())
+      post.title?.toLowerCase().includes(search.toLowerCase()) ||
+      post.personName?.toLowerCase().includes(search.toLowerCase())
   );
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
@@ -67,7 +67,7 @@ const BlogList = () => {
             placeholder="Search articles..."
           />
           <button
-            onClick={postsToShow}
+            onClick={() => postsToShow}
             className="bg-black text-white w-[100px] rounded-md p-2 ml-2"
           >
             Search
@@ -79,9 +79,9 @@ const BlogList = () => {
       </div>
       {showModal && (
         <AddBlogModal
-          onSubmit={(newPost) => {
+          onSubmit={async(formData) => {
             // Handle new post submission
-            console.log("New Post:", newPost);
+            await addBlog(formData)
             setShowModal(false);
           }}
           onClose={() => setShowModal(false)}

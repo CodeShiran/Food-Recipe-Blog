@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../context/AppContext";
 
 const AddBlogModal = ({ onSubmit, onClose }) => {
   const [title, setTitle] = useState("");
@@ -6,17 +7,26 @@ const AddBlogModal = ({ onSubmit, onClose }) => {
   const [author, setAuthor] = useState(""); // Should be user id
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const {addBlog, currentUser} = useContext(AppContext)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("author", author);
+    formData.append("author", currentUser.id);
     formData.append("description", description);
     if (image) formData.append("image", image);
 
-    await onSubmit(formData); // onSubmit should handle FormData
+    const result = await onSubmit(formData);
+    if (result) {
+      onClose()
+      alert("Blog post added successfully!");
+    }
+    else {
+      alert("Failed to add blog post. Please try again.");
+    }
   };
 
   return (
@@ -51,17 +61,11 @@ const AddBlogModal = ({ onSubmit, onClose }) => {
           type="file"
           accept="image/*"
           onChange={(e) => setImage(e.target.files[0])}
-          className="border p-2 rounded"
-        />
-        <input
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          required
-          placeholder="Author ID"
-          className="border p-2 rounded"
+          className="border bg-black text-white p-2 rounded max-w-[250px] w-full"
         />
         <div className="flex gap-4 mt-4">
           <button
+          
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded"
           >
