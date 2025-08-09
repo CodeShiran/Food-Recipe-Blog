@@ -10,29 +10,9 @@ import { AppContext } from "../context/AppContext";
 
 
 
-const recipes = [
-  {
-    id: 1,
-    title: "Healthy Japanese Fried Rice",
-    image: assets.chickenMeatballsSm,
-    person: "John Doe",
-  },
-  {
-    id: 2,
-    title: "Spaghetti Carbonara",
-    image: assets.creamyChickenSm,
-    person: "Jane Smith",
-  },
-  {
-    id: 3,
-    title: "Chicken Tikka Masala",
-    image: assets.potChickensm,
-    person: "Alice Johnson",
-  },
-];
 
 const BlogList = () => {
-  const { blogPosts, addBlog } = useContext(AppContext);
+  const { blogPosts, addBlog, recipes } = useContext(AppContext);
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
 
@@ -104,7 +84,7 @@ const BlogList = () => {
         <div className="md:col-span-1">
           <h2 className="text-xl font-bold mb-4">Related Recipes</h2>
           <div className="grid grid-cols-1 gap-4">
-            {recipes.map((recipe) => (
+            {recipes.slice(0,3).map((recipe) => (
               <SmallCard
                 key={recipe.id}
                 image={recipe.image}
