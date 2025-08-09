@@ -7,6 +7,7 @@ import AddBlogModal from "../components/AddBlogModal";
 import Chat from "../components/Chat";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -15,6 +16,7 @@ const BlogList = () => {
   const { blogPosts, addBlog, recipes } = useContext(AppContext);
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate()
 
   const filteredPosts = blogPosts.filter(
     (post) =>
@@ -78,6 +80,7 @@ const BlogList = () => {
               personImg={post.personImg}
               personName={post.personName}
               date={new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
+              onClick={() => navigate(`/blog/${post._id}`)}
             />
           ))}
         </div>

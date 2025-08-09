@@ -44,6 +44,17 @@ const ContextProvider = ({children}) => {
         }
     }
 
+        const fetchBlogById = async (id) => {
+            try {
+                const url = `http://localhost:3000/api/posts/${id}`
+                const response = await axios.get(url)
+                return response.data.post; // Return the fetched post
+                console.log("Blog post fetched successfully:", response.data.post);
+            } catch (error) {
+                console.error("Error fetching blog post by ID:", error.message);
+            }
+        }
+
     useEffect(() => {
         const fetchAllRecipes = async () => {
             try {
@@ -71,6 +82,7 @@ const ContextProvider = ({children}) => {
             console.log("Recipe added successfully:", response.data);
         } catch (error) {
             console.error("Error adding recipe:", error.message);
+            return null
         }
     }
 
@@ -100,7 +112,7 @@ const ContextProvider = ({children}) => {
     
 
     return (
-        <AppContext.Provider value={{blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog}}>
+        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById }}>
             {children}
         </AppContext.Provider>
     )

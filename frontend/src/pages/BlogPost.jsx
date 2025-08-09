@@ -5,13 +5,31 @@ import EmailBox from '../components/EmailBox';
 import moreRecipes from '../assets/moreRecipes';
 import RecipeCard from '../components/RecipeCard';
 import Chat from '../components/Chat';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 const BlogPost = () => {
+    const {fetchBlogById} = useContext(AppContext)
+    const [blogPost, setBlogPost] = useState(null)
+    const {id} = useParams()
+
+    useEffect(() => {
+        const fetchBlog = async () => {
+            const blog = await fetchBlogById(id)
+            setBlogPost(blog)
+            console.log(blog)
+            console.log(id)
+        }
+        fetchBlog()
+    }, [id]) // Add dependencies here
   return (
     <div className='md:px-[50px] px-[25px]'>
         <Chat />
         <div className='text-center mt-[50px] flex flex-col items-center justify-center'>
-            <h1 className='text-4xl font-semibold'>Full Guide to Becoming a Professional Chef</h1>
+            <h1 className='text-4xl font-semibold'>{blogPost?.title}</h1>
             <div className='flex items-center flex-row gap-8 mt-[25px]'>
                 <div className='flex items-center flex-row gap-8 px-[30px] border-r-1 border-gray-300'>
                     <div className='w-[50px] h-[50px] rounded-full overflow-hidden'>
@@ -19,16 +37,16 @@ const BlogPost = () => {
                     </div>
                     <p className='text-sm font-semibold'>By John Doe</p>
                 </div>
-                <p className='text-sm  text-gray-500'>March 10, 2023</p>
+                <p className='text-sm  text-gray-500'>{new Date(blogPost?.createdAt).toLocaleDateString()}</p>
             </div>
-            <p className='text-gray-500 mt-[25px]'>Becoming a professional chef requires dedication, creativity, and a passion for food. In this guide, we will explore the essential steps to kickstart your culinary career.</p>
+            <p className='text-gray-500 mt-[25px]'>{blogPost?.description}</p>
         </div>
         <div className='w-full mt-[50px]'>
-            <img className='w-full h-auto object-cover rounded-2xl' src={assets.chefCooking} alt="" />
+            <img className='w-full h-auto object-cover rounded-2xl' src={blogPost?.image} alt="" />
         </div>
         <div className='mt-[50px] flex flex-col md:flex-row gap-6'>
             <div className='flex-3/4'>
-                <p className='text-gray-700'> To become a professional chef, you need to start with a solid foundation in culinary skills. This involves mastering essential cooking techniques such as knife skills, sautéing, roasting, grilling, and baking. Understanding flavor profiles and how different ingredients interact is crucial for creating balanced and delicious dishes. Additionally, learning about various cuisines from around the world will broaden your culinary perspective and inspire creativity. Consider enrolling in a reputable culinary school or taking online courses to gain formal training and hands-on experience. Building a strong foundation also includes learning about food safety, kitchen management, and proper plating techniques. Networking with other chefs and participating in internships or apprenticeships can further enhance your skills and prepare you for a successful career in the culinary industry.</p>
+                <p className='text-gray-700'>{blogPost?.content}</p>
             </div>
             <div className='flex-1/4 items-center justify-center flex flex-row md:flex-col gap-6'>
                 <h3 className='text-lg font-semibold'>Share this on</h3>
