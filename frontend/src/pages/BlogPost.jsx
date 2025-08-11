@@ -1,5 +1,3 @@
-import React, { use } from 'react'
-import assets from '../assets/assets'
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import EmailBox from '../components/EmailBox';
 import moreRecipes from '../assets/moreRecipes';

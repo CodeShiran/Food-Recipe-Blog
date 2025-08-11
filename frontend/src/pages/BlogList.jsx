@@ -74,6 +74,7 @@ const BlogList = () => {
           {postsToShow.map((post) => (
             <BlogCard
               key={post._id}
+              authorId={post.author}
               title={post.title}
               description={post.description}
               postImg={post.image}
