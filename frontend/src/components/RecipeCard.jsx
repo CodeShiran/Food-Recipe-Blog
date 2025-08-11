@@ -3,9 +3,9 @@ import { TbStopwatch } from "react-icons/tb";
 import { CiForkAndKnife } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 
-const RecipeCard = ({image, name, time, type, bgColor}) => {
+const RecipeCard = ({image, name, time, type, bgColor, onClick}) => {
   return (
-    <div className={`relative flex flex-col h-[350px] w-[300px] px-3 py-4 ${bgColor} rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 group`}>
+    <div className={`relative flex flex-col h-[350px] w-[300px] px-3 py-4 ${bgColor} rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 group`} onClick={onClick}>
         <div className='w-full h-[200px] bg-gray-200 rounded-t-2xl overflow-hidden flex items-center justify-center'>
             <img src={image} alt="" className="transition-transform duration-300 group-hover:scale-110" />
         </div>

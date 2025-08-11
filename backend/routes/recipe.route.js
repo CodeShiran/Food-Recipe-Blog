@@ -7,7 +7,7 @@ const recipeRouter = express.Router()
 
 recipeRouter.post('/create', upload.single('image'), createRecipe)
 recipeRouter.get('/', getAllRecipes)
-recipeRouter.get('/:id', authMiddleware, getRecipe)
+recipeRouter.get('/:id', getRecipe)
 recipeRouter.put('/edit/:id', authMiddleware, editRecipe)
 recipeRouter.delete('/delete/:id', authMiddleware, deleteRecipe)
 

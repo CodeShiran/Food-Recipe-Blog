@@ -4,10 +4,12 @@ import AddRecipeModal from "../components/AddRecipeModal";
 import Chat from "../components/Chat";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Recipes = () => {
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false)
+  const navigate = useNavigate()
 
   const {recipes} = useContext(AppContext)
 
@@ -65,6 +67,7 @@ const Recipes = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[25px] justify-items-center mt-[50px]">
         {recipesToShow.map((recipe, index) => (
           <RecipeCard
+            onClick={() => navigate(`/recipes/${recipe._id}`)}
             key={index}
             image={recipe.image}
             name={recipe.title}

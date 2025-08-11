@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { TbStopwatch } from "react-icons/tb";
 import { CiForkAndKnife } from "react-icons/ci";
 import { IoPrintOutline, IoShareOutline } from "react-icons/io5";   
@@ -9,6 +9,8 @@ import Footer from '../components/Footer'
 import moreRecipes from '../assets/moreRecipes';
 import RecipeCard from '../components/RecipeCard'
 import Chat from '../components/Chat';
+import { AppContext } from '../context/AppContext';
+import { useParams } from 'react-router-dom';
 
 const nutritionData = [
   { label: 'Calories', value: '200 kcal' },
@@ -18,20 +20,11 @@ const nutritionData = [
 ];
 
 const ingredients = [
-  '2 cups cooked rice',
-  '1 cup mixed vegetables',
-  '2 eggs',
-  '2 tablespoons soy sauce',
-  '1 tablespoon sesame oil',
-  'Salt and pepper to taste',
+  'null'
 ];
 
 const method = [{
-  step: 'Heat sesame oil in a pan, add mixed vegetables and stir-fry for 2-3 minutes.',
-}, {
-  step: 'Push the vegetables to one side, crack the eggs into the pan and scramble them.',
-}, {
-  step: 'Add the cooked rice, soy sauce, salt, and pepper. Stir everything together and cook for another 5 minutes.',
+  'null': 'null'
 }]
 
 const recipes = [
@@ -56,11 +49,37 @@ const recipes = [
 ]
 
 const RecipeDetails = () => {
+  const {getRecipeById} = useContext(AppContext)
+  const {id} = useParams()
+  const [currentRecipe, setCurrentRecipe] = useState(null); 
+
+
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      const recipe = await getRecipeById(id)
+      setCurrentRecipe(recipe)
+    }
+    fetchRecipe()
+  }, [id])
+
+  const nutritionArray = currentRecipe?.nutritionalInfo
+  ? [
+      { label: 'Calories', value: `${currentRecipe.nutritionalInfo.calories} kcal` },
+      { label: 'Protein', value: `${currentRecipe.nutritionalInfo.protein} g` },
+      { label: 'Carbohydrates', value: `${currentRecipe.nutritionalInfo.carbs} g` },
+      { label: 'Fat', value: `${currentRecipe.nutritionalInfo.fats} g` },
+    ]
+  : nutritionData; // fallback if not present
+
+  const ingredientsArray = currentRecipe?.ingredients || ingredients;
+
+  const methodArray = currentRecipe?.directions || method
+
   return (
     <div className='px-[25px] md:px-[50px]'>
       <Chat />
         <div className='flex items-center justify-between py-[30px]'>
-            <h1 className='text-3xl md:text-5xl font-semibold'>Healthy Japanese Fried Rice</h1>
+            <h1 className='text-3xl md:text-5xl font-semibold'>{currentRecipe?.title}</h1>
             <div className='hidden md:flex items-center gap-6'>
                 <div className='flex items-center justify-center rounded-full w-15 h-15 bg-[#E7FAFE] cursor-pointer hover:bg-[#D1F2F6] transition-colors duration-200'>
                     <IoPrintOutline />
@@ -77,36 +96,36 @@ const RecipeDetails = () => {
             </div>
             <div className='flex flex-col border-b-1 border-gray-300 pb-2 md:border-none'>
               <p className='font-semibold'>John Smith</p>
-              <p className='text-sm text-gray-500'>12 July 2025</p>
+              <p className='text-sm text-gray-500'>{new Date(currentRecipe?.createdAt).toLocaleDateString()}</p>
             </div>
           </div>
           <div className='flex items-center gap-2 md:gap-8 md:pl-6 md:pr-2 border-l-0 md:border-l-1 border-gray-300 max-md:border-b-1'>
             <TbStopwatch />
             <div className='flex flex-col text-sm font-semibold'>
               <p>Prep Time</p>
-              <p>15 min</p>
+              <p>{currentRecipe?.prepTime} min</p>
             </div>
           </div>
           <div className='flex items-center gap-2 md:gap-6 md:px-6 md:border-l-1 md:border-r-1 border-gray-300 max-md:border-b-1'>
             <CiForkAndKnife />
             <div className='flex flex-col font-semibold text-sm'>
               <p>Cook Time</p>
-              <p>15 min</p>
+              <p>{currentRecipe?.cookTime} min</p>
             </div>
           </div>
           <div className='flex items-center gap-2 md:gap-6 md:px-2 border-gray-300'>
             <CiForkAndKnife />
-            <p className='font-semibold text-sm'>Chicken</p>
+            <p className='font-semibold text-sm'>{currentRecipe?.type}</p>
           </div>
         </div>
         <div className='mt-8 flex flex-col md:flex-row gap-6 items-center'>
             <div className='flex-2/3 w-full h-[600px] rounded-lg overflow-hidden'>
-                <img src={assets.japaneseFriedRice} className='w-full h-full object-cover' alt="" />
+                <img src={currentRecipe?.image || ''} className='w-full h-full object-cover' alt="" />
             </div>
             <div className='flex-1/3 h-[600px] bg-[#E7FAFE] px-[30px] py-[20px] rounded-lg flex flex-col gap-10'>
                 <h4>Nutrition Information</h4>
                 {
-                    nutritionData.map((item, index) => (
+                    nutritionArray.map((item, index) => (
                         <div key={index} className='flex items-center justify-between  border-b-1 border-gray-300'>
                             <span className='text-sm'>{item.label}</span>
                             <span className='text-sm font-semibold'>{item.value}</span>
@@ -114,22 +133,23 @@ const RecipeDetails = () => {
                     ))
                 }
                 <div className='text-center mt-[100px] text-sm text-gray-500'>
-                    <p>This Healthy Japanese Fried Rice is a delicious and nutritious meal option that is perfect for any time of day. Packed with flavor and wholesome ingredients, it's a dish you can feel good about serving to your family.</p>
+                    <p>{currentRecipe?.description}</p>
                 </div>
             </div>
         </div>
         
         <div className='mt-5 text-center'>
             <p className='mt-8 text-gray-600'>
-                This recipe for Healthy Japanese Fried Rice is not only quick and easy to prepare, but it also offers a delightful blend of flavors and textures. The combination of fresh vegetables, tender chicken, and perfectly cooked rice makes it a satisfying meal that can be enjoyed any time of the day. Whether you're looking for a nutritious lunch or a comforting dinner, this dish is sure to please.
+                {currentRecipe?.content}
             </p>
         </div>
         <div className='flex flex-col md:flex-row gap-6 mt-8'>
             <div className='flex-2/3'>
                 <h3 className='text-2xl font-semibold mb-[40px]'>Ingredients</h3>
-                {ingredients.map((ingredient, index) => (
+                {ingredientsArray.map((ingredient, index) => (
                     <div key={index} className='flex items-center gap-2 border-b-1 border-gray-300 py-6'>
-                        <span className='text-sm font-semibold'>{ingredient}</span>
+                        <span className='text-sm font-semibold'>{ingredient.name}</span>
+        <span className='text-sm text-gray-500'>{ingredient.quantity}</span>
                     </div>
                 ))}
             </div>
@@ -153,8 +173,8 @@ const RecipeDetails = () => {
           <img src={assets.cookingWoman} className='w-full h-auto' alt="" />
           <div className='flex flex-col gap-4 mt-4'>
             
-            {method.map((step, index) => (
-              <div key={index} className='flex items-start gap-2'>
+            {methodArray.map((step, index) => (
+              <div key={index} className='flex items-center gap-2'>
                 <span className='text-lg font-semibold'>{index + 1}.</span>
                 <p className='text-sm  text-gray-500'>{step.step}</p>
               </div>

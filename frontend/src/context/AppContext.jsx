@@ -86,6 +86,18 @@ const ContextProvider = ({children}) => {
         }
     }
 
+    const getRecipeById =  async(id) => {
+        try {
+            const url = `http://localhost:3000/api/recipes/${id}`
+            const response = await axios.get(url)
+            console.log(response.data.recipe) 
+            return response.data.recipe;
+            // Return the fetched recipe
+        } catch (error) {
+            console.error("Error fetching recipe by ID:", error.message);
+        }
+    }
+
     const aiChat = async (foodName) => {
         try {
             const url = 'http://localhost:3000/api/ai-chat'
@@ -112,7 +124,7 @@ const ContextProvider = ({children}) => {
     
 
     return (
-        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById }}>
+        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById, getRecipeById }}>
             {children}
         </AppContext.Provider>
     )
