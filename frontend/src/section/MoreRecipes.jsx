@@ -2,9 +2,11 @@ import React from 'react'
 import RecipeCard from '../components/RecipeCard'
 import { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
+import { useNavigate } from 'react-router-dom'
 
 const MoreRecipes = () => {
     const {recipes} = useContext(AppContext)
+    const navigate = useNavigate()
   return (
     <div className='px-[50px]'>
         <div className='flex flex-row items-center justify-center gap-4 mt-[100px]'>
@@ -19,6 +21,7 @@ const MoreRecipes = () => {
             {
                 recipes.slice(0, 8).map((recipe, index) => (
                     <RecipeCard
+                        onClick={() => navigate(`/recipes/${recipe._id}`)}
                         key={index}
                         image={recipe.image}
                         name={recipe.title}

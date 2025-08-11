@@ -27,8 +27,8 @@ app.listen(3000, () => {
 })
 
 app.use('/api/ai-chat', aiRouter)
-app.use('/api/users/', userRouter)
-app.use('/api/posts/', postsRouter)
+app.use('/api/users', userRouter)
+app.use('/api/posts', postsRouter)
 app.use('/api/recipes', recipeRouter)
 app.use('/api/email', emailRouter)
 

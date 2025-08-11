@@ -48,10 +48,21 @@ const ContextProvider = ({children}) => {
             try {
                 const url = `http://localhost:3000/api/posts/${id}`
                 const response = await axios.get(url)
-                return response.data.post; // Return the fetched post
                 console.log("Blog post fetched successfully:", response.data.post);
+                return response.data.post; // Return the fetched post
+                
             } catch (error) {
                 console.error("Error fetching blog post by ID:", error.message);
+            }
+        }
+
+        const fetchUserById = async (id) => {
+            try {
+                const url = `http://localhost:3000/api/users/${id}`
+                const response = await axios.get(url)
+                return response.data.data; // Return the fetched user
+            } catch (error) {
+                console.error("Error fetching user by ID:", error.message);
             }
         }
 
@@ -124,7 +135,7 @@ const ContextProvider = ({children}) => {
     
 
     return (
-        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById, getRecipeById }}>
+        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById, getRecipeById, fetchUserById }}>
             {children}
         </AppContext.Provider>
     )

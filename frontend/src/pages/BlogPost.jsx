@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use } from 'react'
 import assets from '../assets/assets'
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import EmailBox from '../components/EmailBox';
@@ -12,8 +12,9 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const BlogPost = () => {
-    const {fetchBlogById} = useContext(AppContext)
+    const {fetchBlogById, fetchUserById} = useContext(AppContext)
     const [blogPost, setBlogPost] = useState(null)
+    const [userDetails, setUserDetails] = useState(null)
     const {id} = useParams()
 
     useEffect(() => {
@@ -24,7 +25,21 @@ const BlogPost = () => {
             console.log(id)
         }
         fetchBlog()
-    }, [id]) // Add dependencies here
+    }, [id]) 
+    
+    useEffect(() => {
+        if(!blogPost?.author) return
+        console.log("blog post author", blogPost?.author)
+        const fetchUser = async () => {
+            const user = await fetchUserById(blogPost?.author)
+            setUserDetails(user)
+            console.log(user)
+
+        }
+        fetchUser()
+    },[blogPost])
+    
+    
   return (
     <div className='md:px-[50px] px-[25px]'>
         <Chat />
@@ -33,16 +48,16 @@ const BlogPost = () => {
             <div className='flex items-center flex-row gap-8 mt-[25px]'>
                 <div className='flex items-center flex-row gap-8 px-[30px] border-r-1 border-gray-300'>
                     <div className='w-[50px] h-[50px] rounded-full overflow-hidden'>
-                        <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="" />
+                        <img src={userDetails?.image} alt="" />
                     </div>
-                    <p className='text-sm font-semibold'>By John Doe</p>
+                    <p className='text-sm font-semibold'>By {userDetails?.firstName} {userDetails?.lastName}</p>
                 </div>
                 <p className='text-sm  text-gray-500'>{new Date(blogPost?.createdAt).toLocaleDateString()}</p>
             </div>
             <p className='text-gray-500 mt-[25px]'>{blogPost?.description}</p>
         </div>
         <div className='w-full mt-[50px]'>
-            <img className='w-full h-auto object-cover rounded-2xl' src={blogPost?.image} alt="" />
+            <img className='w-full h-auto max-w-[1000px] mx-auto object-cover rounded-2xl' src={blogPost?.image} alt="" />
         </div>
         <div className='mt-[50px] flex flex-col md:flex-row gap-6'>
             <div className='flex-3/4'>
