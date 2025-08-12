@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { AppContext } from '../context/AppContext';
 
 const initialIngredient = { name: "", quantity: "" };
 const initialDirection = { step: "" };
@@ -16,6 +17,7 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
   const [directions, setDirections] = useState([initialDirection]);
   const [image, setImage] = useState(null);
   const [author, setAuthor] = useState(""); // Should be user id
+  const {currentUser} = useContext(AppContext)
 
   const handleIngredientChange = (idx, field, value) => {
     const updated = ingredients.map((ing, i) =>
@@ -57,7 +59,8 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
     formData.append("ingredients", JSON.stringify(ingredients));
     formData.append("directions", JSON.stringify(directions));
     if (image) formData.append("image", image); // image should be a File object
-    formData.append("author", author);
+    formData.append("author", currentUser.id);
+    console.log(currentUser.id)
 
   onSubmit(formData);
   console.log({title, description, content, nutritionalInfo, prepTime, cookTime, ingredients, directions, author, image});
@@ -95,8 +98,8 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
           <h3 className="font-semibold">Ingredients</h3>
           {ingredients.map((ing, idx) => (
             <div key={idx} className="flex gap-2 mb-2">
-              <input type='number' value={ing.name} onChange={e => handleIngredientChange(idx, "name", e.target.value)} required placeholder="Name" className="border p-2 rounded" />
-              <input type='number' value={ing.quantity} onChange={e => handleIngredientChange(idx, "quantity", e.target.value)} placeholder="Quantity" className="border p-2 rounded" />
+              <input type='text' value={ing.name} onChange={e => handleIngredientChange(idx, "name", e.target.value)} required placeholder="Name" className="border p-2 rounded" />
+              <input type='text' value={ing.quantity} onChange={e => handleIngredientChange(idx, "quantity", e.target.value)} placeholder="Quantity" className="border p-2 rounded" />
             </div>
           ))}
           <button type="button" onClick={addIngredient} className="text-blue-500 underline">+ Add Ingredient</button>
@@ -110,8 +113,7 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
           ))}
           <button type="button" onClick={addDirection} className="text-blue-500 underline">+ Add Step</button>
         </div>
-        <input type='file' accept='image/*' onChange={e => setImage(e.target.files[0])} className="border p-2 rounded" />
-        <input value={author} onChange={e => setAuthor(e.target.value)} required placeholder="Author ID" className="border p-2 rounded" />
+        <input type='file' accept='image/*' onChange={e => setImage(e.target.files[0])} className="border p-2 rounded bg-black text-white" />
         <div className="flex gap-4 mt-4">
           <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Add Recipe</button>
           <button type="button" onClick={onClose} className="bg-gray-300 px-4 py-2 rounded">Cancel</button>

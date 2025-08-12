@@ -21,7 +21,10 @@ const MoreRecipes = () => {
             {
                 recipes.slice(0, 8).map((recipe, index) => (
                     <RecipeCard
-                        onClick={() => navigate(`/recipes/${recipe._id}`)}
+                        onClick={() =>{
+                            window.scrollTo(0,0)
+                             navigate(`/recipes/${recipe._id}`)
+                        }}
                         key={index}
                         image={recipe.image}
                         name={recipe.title}

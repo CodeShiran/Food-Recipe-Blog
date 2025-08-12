@@ -81,7 +81,10 @@ const BlogList = () => {
               personImg={post.personImg}
               personName={post.personName}
               date={new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
-              onClick={() => navigate(`/blog/${post._id}`)}
+              onClick={() => {
+                window.scrollTo(0,0)
+                navigate(`/blog/${post._id}`)
+              }}
             />
           ))}
         </div>
@@ -90,7 +93,11 @@ const BlogList = () => {
           <div className="grid grid-cols-1 gap-4">
             {recipes.slice(0,3).map((recipe) => (
               <SmallCard
-                key={recipe.id}
+                onClick={() =>{
+                            window.scrollTo(0,0)
+                             navigate(`/recipes/${recipe._id}`)
+                        }}
+                key={recipe._id}
                 image={recipe.image}
                 title={recipe.title}
                 person={recipe.person}
