@@ -11,7 +11,7 @@ const Recipes = () => {
   const [showModal, setShowModal] = useState(false)
   const navigate = useNavigate()
 
-  const {recipes} = useContext(AppContext)
+  const {recipes, currentUser} = useContext(AppContext)
 
   const filteredPages = recipes.filter((recipe) =>
     recipe.title.toLowerCase().includes(search.toLowerCase())
@@ -59,7 +59,13 @@ const Recipes = () => {
         </div>
       </div>
       <div className="flex justify-start items-center mt-[20px]">
-        <button onClick={() => setShowModal(true)} className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+        <button onClick={() => {
+          if(!currentUser || !currentUser.id) {
+            alert("You must be logged in to add a recipe.");
+            return;
+          }
+          setShowModal(true);
+        }} className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
           Add New Recipe
         </button>
         {showModal && <AddRecipeModal onSubmit={addRecipe} onClose={() => setShowModal(false)} />}

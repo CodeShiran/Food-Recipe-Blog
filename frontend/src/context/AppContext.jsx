@@ -132,10 +132,21 @@ const ContextProvider = ({children}) => {
         }
     }
 
+    const logout = async () => {
+        try {
+            const url = 'http://localhost:3000/api/users/logout'
+            const response = await axios.post(url, {}, { withCredentials: true })
+            console.log("Logout successful:", response.data);
+            setCurrentUser(null);
+        } catch (error) {
+            console.error("Error logging out:", error.message);
+        }
+    }
+
     
 
     return (
-        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById, getRecipeById, fetchUserById }}>
+        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById, getRecipeById, fetchUserById, logout }}>
             {children}
         </AppContext.Provider>
     )

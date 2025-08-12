@@ -13,16 +13,16 @@ const Navbar = () => {
         setMenu(!menu);
     }
   // Mock user state (replace with real auth context or props)
-  const {currentUser} = useContext(AppContext)
+  const {currentUser, logout} = useContext(AppContext)
   const isLoggedIn = !! currentUser; // Set to true if user is logged in
   const user = currentUser
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const handleProfileClick = () => setShowProfileMenu((prev) => !prev);
   const handleLogout = () => {
-    // Add your logout logic here
+    logout();
     setShowProfileMenu(false);
-    alert("Logged out!");
+    alert("Logout successful");
   };
 
   return (
@@ -76,7 +76,7 @@ const Navbar = () => {
             {isLoggedIn ? (
               <div className="relative">
                 <img
-                  src={user.avatar}
+                  src={user.image}
                   alt="Profile"
                   className="w-10 h-10 rounded-full border-2 border-blue-500 cursor-pointer object-cover"
                   onClick={handleProfileClick}

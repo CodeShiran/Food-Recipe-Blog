@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const BlogList = () => {
-  const { blogPosts, addBlog, recipes } = useContext(AppContext);
+  const { blogPosts, addBlog, recipes, currentUser } = useContext(AppContext);
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate()
@@ -57,12 +57,18 @@ const BlogList = () => {
         </div>
       </div>
       <div className="mt-2.5">
-        <button onClick={() => setShowModal(true)} className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Add New Blog</button>
+        <button onClick={() => {
+          if(!currentUser || !currentUser.id) {
+              alert("You must be logged in to add a blog.");
+              return;
+            }
+          setShowModal(true);
+        }} className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Add New Blog</button>
       </div>
       {showModal && (
         <AddBlogModal
           onSubmit={async(formData) => {
-            // Handle new post submission
+            
             await addBlog(formData)
             setShowModal(false);
           }}
