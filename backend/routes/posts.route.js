@@ -5,7 +5,7 @@ import upload from "../middlewares/upload.js";
 
 const postsRouter = express.Router();
 
-postsRouter.post('/create', upload.single('image'), createPost)
+postsRouter.post('/create', authMiddleware, upload.single('image'), createPost)
 postsRouter.get('/', getAllPosts)
 postsRouter.get('/:id', getPost)
 postsRouter.put('/edit/:id', upload.single('image'), authMiddleware, editPost)

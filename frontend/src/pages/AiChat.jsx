@@ -120,7 +120,7 @@ const AiChat = () => {
 
       <div
         onClick={() => navigate("/")}
-        className="absolute top-5 left-5 z-30 cursor-pointer pointer-events-auto"
+        className="fixed top-5 left-5 z-30 cursor-pointer pointer-events-auto"
       >
         <h2 className="logo-font text-2xl text-white">Foodieland</h2>
       </div>

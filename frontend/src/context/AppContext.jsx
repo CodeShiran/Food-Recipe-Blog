@@ -28,6 +28,13 @@ const ContextProvider = ({children}) => {
         fetchAllBlogPosts();
     }, [])
 
+    useEffect(() => {
+    const cachedUser = localStorage.getItem("user");
+    if (cachedUser) {
+      setCurrentUser(JSON.parse(cachedUser));
+    }
+  }, []);
+
 
     const addBlog = async (blogPost) => {
         try {
@@ -87,7 +94,8 @@ const ContextProvider = ({children}) => {
             const response = await axios.post(url, recipeData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }
+                },
+                withCredentials: true
             })
             setRecipes((prevRecipes) => [...prevRecipes, response.data.recipe])
             console.log("Recipe added successfully:", response.data);
@@ -125,7 +133,8 @@ const ContextProvider = ({children}) => {
             const url = 'http://localhost:3000/api/users/login'
             const response = await axios.post(url, { email, password }, { withCredentials: true })
             console.log("Login successful:", response.data);
-            setCurrentUser(response.data.data); 
+            setCurrentUser(response.data.data);
+            localStorage.setItem("user", JSON.stringify(response.data.data));
             return response.data; // Assuming the response contains user data or a token
         } catch (error) {
             console.error("Error logging in:", error.message);
@@ -138,6 +147,7 @@ const ContextProvider = ({children}) => {
             const response = await axios.post(url, {}, { withCredentials: true })
             console.log("Logout successful:", response.data);
             setCurrentUser(null);
+            localStorage.removeItem("user");
         } catch (error) {
             console.error("Error logging out:", error.message);
         }

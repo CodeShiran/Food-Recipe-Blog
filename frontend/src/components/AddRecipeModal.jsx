@@ -63,7 +63,7 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
     console.log(currentUser.id)
 
   onSubmit(formData);
-  console.log({title, description, content, nutritionalInfo, prepTime, cookTime, ingredients, directions, author, image});
+  console.log({title, description, content, nutritionalInfo, prepTime, cookTime, ingredients, directions, author: currentUser.id, image});
   onClose();
   };
 
