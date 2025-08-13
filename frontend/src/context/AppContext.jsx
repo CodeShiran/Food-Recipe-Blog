@@ -42,7 +42,8 @@ const ContextProvider = ({children}) => {
             const response = await axios.post(url, blogPost, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }
+                },
+                withCredentials: true
             })
             setBlogPosts((prevPosts) => [...prevPosts, response.data.post])
             console.log("Blog post added successfully:", response.data);
