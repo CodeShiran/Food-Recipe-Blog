@@ -75,7 +75,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="flex flex-col md:flex-row gap-10 mt-[25px]">
-              <div className="whitespace-nowrap flex w-full flex-row md:flex-col md:w-[40%] gap-7 items-start">
+              <div className="whitespace-nowrap flex w-full flex-col  gap-7 items-start">
                 <p>Subject</p>
                 <input
                   value={subject}

@@ -50,12 +50,7 @@ const Recipes = () => {
             placeholder="Search Recipes..."
             className="border border-gray-300 p-2"
           />
-          <button
-            onClick={() => filteredPages}
-            className="bg-black text-white p-2 hover:bg-gray-700 hover:shadow-sm"
-          >
-            Search
-          </button>
+          
         </div>
       </div>
       <div className="flex justify-start items-center mt-[20px]">
