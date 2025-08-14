@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
-import { IoMdMenu } from "react-icons/io";
+import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
@@ -112,6 +112,14 @@ const Navbar = () => {
         <div className={`fixed inset-0 z-50 transition-all duration-300 md:hidden ${menu ? 'visible opacity-100' : 'invisible opacity-0'}`}>
             <div className={`absolute inset-0 bg-black/5 transition-opacity duration-300 ${menu ? 'opacity-100' : 'opacity-0'}`} onClick={handleMenuToggle}></div>
             <ul className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-screen bg-white shadow-lg rounded-lg p-4 flex flex-col items-center gap-14 transition-all duration-500 ease-out ${menu ? 'translate-y-0 opacity-100 scale-100' : '-translate-y-8 opacity-0 scale-95'}`}>
+                {/* Close button for mobile menu */}
+                <button
+                  onClick={handleMenuToggle}
+                  aria-label="Close menu"
+                  className="absolute top-4 right-6 w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200"
+                >
+                  <IoMdClose />
+                </button>
                 <li className='cursor-pointer hover:text-blue-500 mt-14'>Home</li>
                 <li className='cursor-pointer hover:text-blue-500'>Recipes</li>
                 <li className='cursor-pointer hover:text-blue-500'>Blog</li>
