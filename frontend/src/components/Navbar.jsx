@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
@@ -12,6 +12,11 @@ const Navbar = () => {
     const handleMenuToggle = () => {
         setMenu(!menu);
     }
+
+    useEffect(() => {
+      document.body.style.overflow = menu ? 'hidden': ''
+      return () => {document.body.style.overflow = ''}
+    }, [menu])
   // Mock user state (replace with real auth context or props)
   const {currentUser, logout} = useContext(AppContext)
   const isLoggedIn = !! currentUser; // Set to true if user is logged in
@@ -112,7 +117,6 @@ const Navbar = () => {
         <div className={`fixed inset-0 z-50 transition-all duration-300 md:hidden ${menu ? 'visible opacity-100' : 'invisible opacity-0'}`}>
             <div className={`absolute inset-0 bg-black/5 transition-opacity duration-300 ${menu ? 'opacity-100' : 'opacity-0'}`} onClick={handleMenuToggle}></div>
             <ul className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-screen bg-white shadow-lg rounded-lg p-4 flex flex-col items-center gap-14 transition-all duration-500 ease-out ${menu ? 'translate-y-0 opacity-100 scale-100' : '-translate-y-8 opacity-0 scale-95'}`}>
-                {/* Close button for mobile menu */}
                 <button
                   onClick={handleMenuToggle}
                   aria-label="Close menu"
@@ -120,11 +124,11 @@ const Navbar = () => {
                 >
                   <IoMdClose />
                 </button>
-                <li className='cursor-pointer hover:text-blue-500 mt-14'>Home</li>
-                <li className='cursor-pointer hover:text-blue-500'>Recipes</li>
-                <li className='cursor-pointer hover:text-blue-500'>Blog</li>
-                <li className='cursor-pointer hover:text-blue-500'>Contact</li>
-                <li className='cursor-pointer hover:text-blue-500'>About Us</li>
+                <Link onClick={() => handleMenuToggle()} to="/"><li className='cursor-pointer hover:text-blue-500 mt-14'>Home</li></Link>
+                <Link onClick={() => handleMenuToggle()} to="/recipes"><li className='cursor-pointer hover:text-blue-500'>Recipes</li></Link>
+                <Link onClick={() => handleMenuToggle()} to="/blog"><li className='cursor-pointer hover:text-blue-500'>Blog</li></Link>
+                <Link onClick={() => handleMenuToggle()} to="/contact"><li className='cursor-pointer hover:text-blue-500'>Contact</li></Link>
+                <Link onClick={() => handleMenuToggle()} to="/about"><li className='cursor-pointer hover:text-blue-500'>About Us</li></Link>
                 <li>
                   {isLoggedIn ? (
                     <div className="flex flex-col items-center gap-2">
