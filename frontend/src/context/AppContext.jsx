@@ -77,7 +77,7 @@ const ContextProvider = ({children}) => {
     useEffect(() => {
         const fetchAllRecipes = async () => {
             try {
-                const url = 'http://localhost:3000/api/recipes'
+                const url = 'https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/recipes'
                 const response = await axios.get(url)
                 setRecipes(response.data.recipes)
                 console.log("Recipes fetched successfully:", response.data);
