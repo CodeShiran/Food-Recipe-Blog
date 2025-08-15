@@ -7,7 +7,7 @@ import recipeRouter from './routes/recipe.route.js'
 import emailRouter from './routes/email.route.js'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
-import { Methods } from 'openai/resources/fine-tuning/methods.js'
+
 
 const app = express()
 
