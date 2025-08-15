@@ -8,26 +8,23 @@ import emailRouter from './routes/email.route.js'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 
-
 const app = express()
 
 app.use(express.json())
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://your-frontend-domain.vercel.app'] 
+    : ['http://localhost:5173'],
   credentials: true
 }));
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 
-
-
-app.listen(3000, () => {
-    connectdb()
-    console.log('Server is running on port 3000')
-})
+// Connect to database
+connectdb()
 
 app.get('/', (req, res) => {
-  res.send("hello world")
+  res.json({ message: "API is working!" })
 })
 
 app.use('/api/ai-chat', aiRouter)
@@ -36,3 +33,13 @@ app.use('/api/posts', postsRouter)
 app.use('/api/recipes', recipeRouter)
 app.use('/api/email', emailRouter)
 
+// For local development only
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 3000
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
+  })
+}
+
+// Export for Vercel
+export default app
