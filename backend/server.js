@@ -7,22 +7,23 @@ import recipeRouter from './routes/recipe.route.js'
 import emailRouter from './routes/email.route.js'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import { Methods } from 'openai/resources/fine-tuning/methods.js'
 
 const app = express()
 
-app.use(express.json())
+
 app.use(cors({
-  origin: (origin, cb) => {
-    const allow = [
-      'https://food-recipe-blog-liard.vercel.app'
-    ]
-    if (!origin || allow.includes(origin) || /\.vercel\.app$/.test(origin)) return cb(null, true)
-    cb(new Error('Not allowed by CORS'))
-  },
-  credentials: true
-}))
+  origin: [
+    'http://localhost:5173',
+    'https://food-recipe-blog-liard.vercel.app'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
+}));
+app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
+
 
 // Connect to database
 connectdb()
