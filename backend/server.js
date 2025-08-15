@@ -24,14 +24,30 @@ app.use(express.urlencoded({ extended: true }));
 connectdb()
 
 app.get('/', (req, res) => {
-  res.json({ message: "API is working!" })
+  res.json({ 
+    message: "API is working!", 
+    environment: process.env.NODE_ENV,
+    timestamp: new Date().toISOString()
+  })
 })
 
+// API routes
 app.use('/api/ai-chat', aiRouter)
 app.use('/api/users', userRouter)
 app.use('/api/posts', postsRouter)
 app.use('/api/recipes', recipeRouter)
 app.use('/api/email', emailRouter)
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).json({ error: 'Something went wrong!', message: err.message })
+})
+
+// 404 handler
+app.use('*', (req, res) => {
+  res.status(404).json({ error: 'Route not found', path: req.originalUrl })
+})
 
 // For local development only
 if (process.env.NODE_ENV !== 'production') {
