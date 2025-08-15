@@ -14,7 +14,6 @@ app.use(express.json())
 app.use(cors({
   origin: (origin, cb) => {
     const allow = [
-      'http://localhost:5173',
       'https://food-recipe-blog-liard.vercel.app'
     ]
     if (!origin || allow.includes(origin) || /\.vercel\.app$/.test(origin)) return cb(null, true)
