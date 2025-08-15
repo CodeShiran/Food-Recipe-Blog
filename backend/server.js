@@ -15,7 +15,7 @@ const app = express()
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://food-recipe-blog-liard.vercel.app'
+    'https://food-recipe-blog-frontend.vercel.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
