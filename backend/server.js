@@ -13,7 +13,7 @@ const app = express()
 app.use(express.json())
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app'] 
+    ? ['https://food-recipe-blog-liard.vercel.app/'] 
     : ['http://localhost:5173'],
   credentials: true
 }));
