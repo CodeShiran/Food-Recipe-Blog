@@ -16,7 +16,7 @@ const ContextProvider = ({children}) => {
     useEffect(() => {
         const fetchAllBlogPosts = async () => {
             try {
-                const url = 'https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/posts'
+                const url = 'https://food-recipe-blog-api.vercel.app//api/posts'
                 const response = await axios.get(url)
                 setBlogPosts(response.data.posts)
                 console.log("Posts fetched successfully:", response.data);
