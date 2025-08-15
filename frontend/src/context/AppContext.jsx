@@ -16,7 +16,7 @@ const ContextProvider = ({children}) => {
     useEffect(() => {
         const fetchAllBlogPosts = async () => {
             try {
-                const url = 'https://food-recipe-blog-api.vercel.app//api/posts'
+                const url = 'https://food-recipe-blog-api.vercel.app/api/posts'
                 const response = await axios.get(url)
                 setBlogPosts(response.data.posts)
                 console.log("Posts fetched successfully:", response.data);
@@ -38,7 +38,7 @@ const ContextProvider = ({children}) => {
 
     const addBlog = async (blogPost) => {
         try {
-            const url = 'https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/posts/create'
+            const url = 'https://food-recipe-blog-api.vercel.app/api/posts/create'
             const response = await axios.post(url, blogPost, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -54,7 +54,7 @@ const ContextProvider = ({children}) => {
 
         const fetchBlogById = async (id) => {
             try {
-                const url = `https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/posts/${id}`
+                const url = `https://food-recipe-blog-api.vercel.app/api/posts/${id}`
                 const response = await axios.get(url)
                 console.log("Blog post fetched successfully:", response.data.post);
                 return response.data.post; // Return the fetched post
@@ -66,7 +66,7 @@ const ContextProvider = ({children}) => {
 
         const fetchUserById = async (id) => {
             try {
-                const url = `https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/users/${id}`
+                const url = `https://food-recipe-blog-api.vercel.app/api/users/${id}`
                 const response = await axios.get(url)
                 return response.data.data; // Return the fetched user
             } catch (error) {
@@ -77,7 +77,7 @@ const ContextProvider = ({children}) => {
     useEffect(() => {
         const fetchAllRecipes = async () => {
             try {
-                const url = 'https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/recipes'
+                const url = 'https://food-recipe-blog-api.vercel.app/api/recipes'
                 const response = await axios.get(url)
                 setRecipes(response.data.recipes)
                 console.log("Recipes fetched successfully:", response.data);
@@ -91,7 +91,7 @@ const ContextProvider = ({children}) => {
 
     const addRecipe = async (recipeData) => {
         try {
-            const url = 'https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/recipes/create'
+            const url = 'https://food-recipe-blog-api.vercel.app/api/recipes/create'
             const response = await axios.post(url, recipeData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -108,7 +108,7 @@ const ContextProvider = ({children}) => {
 
     const getRecipeById =  async(id) => {
         try {
-            const url = `https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/recipes/${id}`
+            const url = `https://food-recipe-blog-api.vercel.app/api/recipes/${id}`
             const response = await axios.get(url)
             console.log(response.data.recipe) 
             return response.data.recipe;
@@ -120,7 +120,7 @@ const ContextProvider = ({children}) => {
 
     const aiChat = async (foodName) => {
         try {
-            const url = 'https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/ai-chat'
+            const url = 'https://food-recipe-blog-api.vercel.app/api/ai-chat'
             const response = await axios.post(url, { foodName })
             console.log("AI chat response:", response.data);
             return response.data.recipe; // Assuming the response contains a 'response' field with the AI's reply
@@ -131,7 +131,7 @@ const ContextProvider = ({children}) => {
 
     const login = async (email, password) => {
         try {
-            const url = 'https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/users/login'
+            const url = 'https://food-recipe-blog-api.vercel.app/api/users/login'
             const response = await axios.post(url, { email, password }, { withCredentials: true })
             console.log("Login successful:", response.data);
             setCurrentUser(response.data.data);
@@ -144,7 +144,7 @@ const ContextProvider = ({children}) => {
 
     const logout = async () => {
         try {
-            const url = 'https://food-recipe-blog-fopdrvcz1-shirans-projects-b79aac30.vercel.app/api/users/logout'
+            const url = 'https://food-recipe-blog-api.vercel.app/api/users/logout'
             const response = await axios.post(url, {}, { withCredentials: true })
             console.log("Logout successful:", response.data);
             setCurrentUser(null);
