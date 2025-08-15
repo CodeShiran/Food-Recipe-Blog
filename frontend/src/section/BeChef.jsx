@@ -3,7 +3,7 @@ import assets from '../assets/assets'
 
 const BeChef = () => {
   return (
-    <div className='flex items-center flex-col md:flex-row w-[90%] mx-auto md:mt-[150px] mt-[100px]'>
+    <div className='flex items-center flex-col md:flex-row w-[90%] mx-auto md:mt-[100px] mt-[50px]'>
       <div className='flex-1 md:block hidden'>
         <h2 className='text-5xl font-bold'>Everyone can be a <br />chef in their own kitchen</h2>
         <p className='text-gray-400 mt-[50px]'>Discover the joy of cooking with our easy-to-follow recipes and tips.</p>
