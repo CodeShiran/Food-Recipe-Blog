@@ -12,11 +12,16 @@ const app = express()
 
 app.use(express.json())
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://food-recipe-blog-liard.vercel.app'] 
-    : ['http://localhost:5173'],
+  origin: (origin, cb) => {
+    const allow = [
+      'http://localhost:5173',
+      'https://food-recipe-blog-liard.vercel.app'
+    ]
+    if (!origin || allow.includes(origin) || /\.vercel\.app$/.test(origin)) return cb(null, true)
+    cb(new Error('Not allowed by CORS'))
+  },
   credentials: true
-}));
+}))
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 
