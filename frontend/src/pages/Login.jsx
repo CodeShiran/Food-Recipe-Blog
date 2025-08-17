@@ -22,7 +22,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="relative h-screen w-full flex items-center md:flex-row flex-col md:justify-between justify-center px-[50px]">
+    <div className="relative h-screen w-full flex items-center md:flex-row flex-col md:justify-between justify-center px-[25px] md:px-[50px]">
         <div className='absolute top-5 left-5 z-30 cursor-pointer pointer-events-auto'>
                 <Link to={"/"}>
                     <h2 className='logo-font text-2xl text-white'>Foodieland.</h2>
@@ -40,7 +40,7 @@ const Login = () => {
           Welcome <br /> Back to <br /> Foodieland!
         </h1>
       </div>
-      <div className="relative z-20 max-w-[800px] w-full backdrop-blur-md  px-8 py-[50px] md:py-[100px] rounded-lg shadow-lg flex flex-col gap-6">
+      <div className="relative z-20 max-w-[800px] w-full backdrop-blur-md px-2 md:px-8 py-[50px] md:py-[100px] rounded-lg shadow-lg flex flex-col gap-6">
         <div className="flex md:flex-row flex-col items-start  md:items-center justify-between rounded">
           <MdOutlineEmail className="flex-1/4 text-white text-3xl" />
           <input
@@ -66,7 +66,7 @@ const Login = () => {
             <div className="flex items-center">
               <p className="text-white">Forgot your password?</p>
               <button className="text-[#F2F2F2] underline ml-2 hover:text-[#828282] transition-colors duration-200">
-                Reset it
+                Reset
               </button>
             </div>
             <div className="flex items-center">

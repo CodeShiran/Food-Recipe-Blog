@@ -37,7 +37,7 @@ const Signup = () => {
                     <input type="text" placeholder='confirm password' className='placeholder:text-white border-1 rounded-2xl w-full bg-transparent border-b border-white text-white py-2 px-4 focus:outline-none' />
                 </div>
                 <div className='flex items-center justify-between mt-[10px]'>
-                    <div className='flex items-center justify-start'>
+                    <div className='flex flex-col md:flex-row items-start md:items-center justify-start'>
                     <p className='text-white'>Already have an account?</p>
                     <p onClick={() => navigate('/login')} className='text-white cursor-pointer underline hover:text-[blue] transition-all duration-150'>login</p>
                 </div>
