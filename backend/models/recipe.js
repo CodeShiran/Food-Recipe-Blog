@@ -65,7 +65,7 @@ const recipeSchema = new mongoose.Schema({
     ], 
     image: {
         type: String,
-        default: "https://via.placeholder.com/600x400?text=No+Image",
+        default: "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-social-600nw-1677509740.jpg",
     },
     author : {
         type: mongoose.Schema.Types.ObjectId,

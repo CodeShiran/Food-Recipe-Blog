@@ -7,7 +7,7 @@ const RecipeCard = ({image, name, time, type, bgColor, onClick}) => {
   return (
     <div className={`relative flex flex-col h-[350px] w-[300px] px-3 py-4 ${bgColor} rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 group`} onClick={onClick}>
         <div className='w-full h-[200px] bg-gray-200 rounded-t-2xl overflow-hidden flex items-center justify-center'>
-            <img src={image} alt="" className="transition-transform duration-300 group-hover:scale-110" />
+            <img src={image} alt="" className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110" />
         </div>
         <div className=''>
             <h2 className='font-semibold mt-[20px]'>{name}</h2>
