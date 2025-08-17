@@ -32,7 +32,7 @@ const Recipes = () => {
     <div className="md:px-[50px] px-[25px]">
       <Chat />
       <h1 className="text-4xl text-center mt-[50px]">Recipes</h1>
-      <div className="flex flex-row items-center justify-between">
+      <div className="flex md:flex-row flex-col gap-2 max-md:mt-2 items-start md:items-center justify-between">
         <div>
           <select className="border border-gray-300 p-2">
             <option value="">All Categories</option>
