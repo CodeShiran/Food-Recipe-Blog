@@ -4,15 +4,15 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import ContextProvider from './context/AppContext.jsx'
-import { SpeedInsights } from "@vercel/speed-insights/react"
+
 
 createRoot(document.getElementById('root')).render(
 
     <BrowserRouter>
     <ContextProvider>
-      <SpeedInsights >
+
       <App />
-      </SpeedInsights>
+
     </ContextProvider>
     </BrowserRouter>,
 
