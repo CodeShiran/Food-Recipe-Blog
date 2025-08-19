@@ -30,6 +30,7 @@ const Signup = () => {
 
     try {
         await createUser({firstName, lastName, email, password})
+        alert('user created successfully')
         navigate("/login")
     } catch (error) {
         console.log('error while creating user',error.message)

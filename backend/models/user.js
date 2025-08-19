@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     },
     image: {
         type:String,
-        default: "https://www.gravatar.com/avatar/0000000000000000000000000000000?d=mp&f=y",
+        default: "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-social-600nw-1677509740.jpg",
         required: false,
     }
 

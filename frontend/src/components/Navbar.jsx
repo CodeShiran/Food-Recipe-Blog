@@ -133,7 +133,7 @@ const Navbar = () => {
                   {isLoggedIn ? (
                     <div className="flex flex-col items-center gap-2">
                       <img
-                        src={user.avatar}
+                        src={user.image}
                         alt="Profile"
                         className="w-12 h-12 rounded-full border-2 border-blue-500 object-cover mb-1"
                       />

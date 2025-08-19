@@ -15,7 +15,7 @@ export const userRegister = async (req, res) => {
             return res.status(400).json({ message: 'User already exists' })
         }
 
-        const newUser = new User({ firstName, lastName, email, password, image })
+        const newUser = new User({ firstName, lastName, email, password,})
         await newUser.save()
         res.status(201).json({ message: 'User registered successfully', data: { id: newUser._id, firstName: newUser.firstName, lastName: newUser.lastName, email: newUser.email, image: newUser.image } })
     } catch (error) {
