@@ -155,10 +155,19 @@ const ContextProvider = ({children}) => {
         }
     }
 
-    
+    const createUser = async (userData) => {
+        try {
+            const url = `${API_BASE}/api/users/register`
+            const response = await axios.post(url, userData, { withCredentials: true })
+            console.log("User created successfully:", response.data);
+            return response.data;
+        } catch (error) {
+            console.error("Error creating user:", error.message);
+        }
+    }
 
     return (
-        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById, getRecipeById, fetchUserById, logout }}>
+        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById, getRecipeById, fetchUserById, logout, createUser }}>
             {children}
         </AppContext.Provider>
     )
