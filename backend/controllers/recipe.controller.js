@@ -93,6 +93,19 @@ export const getRecipe = async (req, res) => {
     }
 }
 
+export const getRecipesByCategory = async (req, res) => {
+    try {
+        const {category} = req.params
+        const url = `${API_BASE}/api/recipes/category/${category}`;
+        const response = await fetch(url);
+        const recipes = await response.json();
+        res.status(200).json({recipes});
+    } catch (error) {
+        console.error("Error fetching recipes by category:", error.message);
+        res.status(500).json({error: 'Internal server error'});
+    }
+}
+
 export const editRecipe = async (req, res) => {
     const {id} = req.params
 
