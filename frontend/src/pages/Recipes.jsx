@@ -9,13 +9,17 @@ import { useNavigate } from "react-router-dom";
 const Recipes = () => {
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState("");
   const navigate = useNavigate()
 
   const {recipes, currentUser} = useContext(AppContext)
 
-  const filteredPages = recipes.filter((recipe) =>
-    recipe.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredPages = recipes.filter((recipe) => {
+    const matchesSearch = recipe.title.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory = selectedCategory ? recipe.type === selectedCategory : true;
+    return matchesSearch && matchesCategory;
+  });
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const recipesPerPage = 8;
@@ -34,7 +38,7 @@ const Recipes = () => {
       <h1 className="text-4xl text-center mt-[50px]">Recipes</h1>
       <div className="flex md:flex-row flex-col gap-2 max-md:mt-2 items-start md:items-center justify-between">
         <div>
-          <select className="border border-gray-300 p-2">
+          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)} className="border border-gray-300 p-2">
             <option value="">All Categories</option>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
