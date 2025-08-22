@@ -49,8 +49,8 @@ export const loginUser = async (req, res) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-           secure: process.env.NODE_ENV === 'production', // Use secure cookies in production// Use secure cookies in production
-            sameSite: 'Strict', // Prevent CSRF attacks
+            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+            sameSite:  process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Prevent CSRF attacks
             maxAge: 3600000 // 1 hour
         })
 
@@ -69,7 +69,7 @@ export const logoutUser = async (req, res) => {
     res.clearCookie('token', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-        sameSite: 'Strict' // Prevent CSRF attacks
+         sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax' // Prevent CSRF attacks
     })
 
 

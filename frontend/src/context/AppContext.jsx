@@ -152,6 +152,7 @@ const ContextProvider = ({children}) => {
             localStorage.removeItem("user");
         } catch (error) {
             console.error("Error logging out:", error.message);
+            setCurrentUser(null);
         }
     }
 
