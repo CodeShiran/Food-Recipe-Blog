@@ -1,7 +1,10 @@
 import React from "react";
 import categories from "../assets/categories";
+import { useNavigate } from "react-router-dom";
+
 
 const Categories = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full grid grid-cols-2 gap-[25px] md:grid-cols-4 lg:grid-cols-6 justify-items-center mt-[75px]">
       {categories.map((category, index) => {
@@ -21,6 +24,10 @@ const Categories = () => {
         }
         return (
           <div
+            onClick={() => {
+              window.scrollTo(0, 0);
+              navigate('/recipes');
+            }}
             key={index}
             className={`relative flex flex-col items-center justify-center gap-8 p-6 cursor-pointer hover:scale-105 transition-transform duration-300 rounded-2xl ${bgClass}`}
           >
