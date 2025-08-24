@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
+  import { toast } from "react-toastify";
 
 const AddBlogModal = ({ onSubmit, onClose }) => {
   const [title, setTitle] = useState("");
@@ -8,7 +9,7 @@ const AddBlogModal = ({ onSubmit, onClose }) => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const {addBlog, currentUser} = useContext(AppContext)
-  import { toast } from "react-toastify";
+
 
 
   const handleSubmit = async (e) => {

@@ -5,6 +5,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Signup = () => {
     };
 
     if(userData.password !== userData.confirmPassword) {
-        alert("Passwords do not match!");
+        toast.error("Passwords do not match!");
         return
     }
 
@@ -30,10 +31,10 @@ const Signup = () => {
 
     try {
         await createUser({firstName, lastName, email, password})
-        alert('user created successfully')
+        toast.success('user created successfully')
         navigate("/login")
     } catch (error) {
-        console.log('error while creating user',error.message)
+        toast.error(error?.response?.data?.message || error?.message || "Failed to create user");
     }
   };
   return (

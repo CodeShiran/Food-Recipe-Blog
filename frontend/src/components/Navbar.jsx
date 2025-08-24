@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import { toast } from 'react-toastify';
 
@@ -23,6 +23,7 @@ const Navbar = () => {
   const isLoggedIn = !! currentUser; // Set to true if user is logged in
   const user = currentUser
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const navigate = useNavigate()
 
   const handleProfileClick = () => setShowProfileMenu((prev) => !prev);
   const handleLogout = () => {
@@ -34,7 +35,7 @@ const Navbar = () => {
   return (
     <div className='flex items-center justify-between px-[50px] py-[30px] border-b-1 border-gray-300'>
         <div>
-            <h2 className='logo-font text-2xl'>Foodieland.</h2>
+            <h2 className='logo-font text-2xl cursor-pointer' onClick={() => navigate("/")}>Foodieland.</h2>
         </div>
         <div className='flex items-center gap-9 list-none max-md:hidden'>
             <li className='relative cursor-pointer group'>
