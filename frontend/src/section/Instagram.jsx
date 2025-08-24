@@ -21,7 +21,7 @@ const Instagram = () => {
         if (window.instgrm) {
           setTimeout(() => {
             window.instgrm.Embeds.process();
-            console.log("Instagram script loaded and processed");
+            
           }, 100);
         }
       };

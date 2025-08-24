@@ -8,6 +8,7 @@ const AddBlogModal = ({ onSubmit, onClose }) => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const {addBlog, currentUser} = useContext(AppContext)
+  import { toast } from "react-toastify";
 
 
   const handleSubmit = async (e) => {
@@ -22,10 +23,10 @@ const AddBlogModal = ({ onSubmit, onClose }) => {
     const result = await onSubmit(formData);
     if (result) {
       onClose()
-      alert("Blog post added successfully!");
+      toast.success("Blog post added successfully!");
     }
     else {
-      alert("Failed to add blog post. Please try again.");
+      toast.error("Failed to add blog post. Please try again.");
     }
   };
 

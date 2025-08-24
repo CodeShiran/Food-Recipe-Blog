@@ -20,7 +20,7 @@ const ContextProvider = ({children}) => {
                 const url = `${API_BASE}/api/posts`
                 const response = await axios.get(url)
                 setBlogPosts(response.data.posts)
-                console.log("Posts fetched successfully:", response.data);
+                
             } catch (error) {
                 console.error("Error fetching posts:", error.message);
             }
@@ -47,7 +47,7 @@ const ContextProvider = ({children}) => {
                 withCredentials: true
             })
             setBlogPosts((prevPosts) => [...prevPosts, response.data.post])
-            console.log("Blog post added successfully:", response.data);
+           
         } catch (error) {
             console.error("Error adding blog post:", error.message);
         }
@@ -57,7 +57,7 @@ const ContextProvider = ({children}) => {
             try {
                 const url = `${API_BASE}/api/posts/${id}`
                 const response = await axios.get(url)
-                console.log("Blog post fetched successfully:", response.data.post);
+                
                 return response.data.post; // Return the fetched post
                 
             } catch (error) {
@@ -81,7 +81,7 @@ const ContextProvider = ({children}) => {
                 const url = `${API_BASE}/api/recipes`
                 const response = await axios.get(url)
                 setRecipes(response.data.recipes)
-                console.log("Recipes fetched successfully:", response.data);
+                
 
             } catch (error) {
                 console.error("Error Fetching data", error.message)
@@ -100,7 +100,7 @@ const ContextProvider = ({children}) => {
                 withCredentials: true
             })
             setRecipes((prevRecipes) => [...prevRecipes, response.data.recipe])
-            console.log("Recipe added successfully:", response.data);
+            
         } catch (error) {
             console.error("Error adding recipe:", error.message);
             return null
@@ -111,7 +111,7 @@ const ContextProvider = ({children}) => {
         try {
             const url = `${API_BASE}/api/recipes/${id}`
             const response = await axios.get(url)
-            console.log(response.data.recipe) 
+            
             return response.data.recipe;
             // Return the fetched recipe
         } catch (error) {
@@ -123,7 +123,7 @@ const ContextProvider = ({children}) => {
         try {
             const url = `${API_BASE}/api/ai-chat`
             const response = await axios.post(url, { foodName })
-            console.log("AI chat response:", response.data);
+            
             return response.data.recipe; // Assuming the response contains a 'response' field with the AI's reply
         } catch (error) {
             console.error("Error in AI chat:", error.message);
@@ -134,7 +134,7 @@ const ContextProvider = ({children}) => {
         try {
             const url = `${API_BASE}/api/users/login`
             const response = await axios.post(url, { email, password }, { withCredentials: true })
-            console.log("Login successful:", response.data);
+            
             setCurrentUser(response.data.data);
             localStorage.setItem("user", JSON.stringify(response.data.data));
             return response.data; // Assuming the response contains user data or a token
@@ -147,7 +147,7 @@ const ContextProvider = ({children}) => {
         try {
             const url = `${API_BASE}/api/users/logout`
             const response = await axios.post(url, {}, { withCredentials: true })
-            console.log("Logout successful:", response.data);
+            
             setCurrentUser(null);
             localStorage.removeItem("user");
         } catch (error) {
@@ -160,7 +160,7 @@ const ContextProvider = ({children}) => {
         try {
             const url = `${API_BASE}/api/users/register`
             const response = await axios.post(url, userData, { withCredentials: true })
-            console.log("User created successfully:", response.data);
+            
             return response.data;
         } catch (error) {
             console.error("Error creating user:", error.message);

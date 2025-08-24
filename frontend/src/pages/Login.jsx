@@ -4,6 +4,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,11 +15,11 @@ const Login = () => {
   const handleLogin = async () => {
     const res = await login(email, password)
     if( res && res.message === 'User logged in successfully') {
-      alert("Login successful!");
+      toast.success("Login successful!");
       navigate("/");
     }
     else{
-      alert("Login failed. Please check your credentials.");
+      toast.error("Login failed. Please check your credentials.");
     }
   };
   return (

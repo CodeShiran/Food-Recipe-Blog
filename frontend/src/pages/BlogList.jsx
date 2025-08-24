@@ -8,6 +8,7 @@ import Chat from "../components/Chat";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 
@@ -59,7 +60,7 @@ const BlogList = () => {
       <div className="mt-2.5">
         <button onClick={() => {
           if(!currentUser || !currentUser.id) {
-              alert("You must be logged in to add a blog.");
+              toast.warning("You must be logged in to add a blog.");
               return;
             }
           setShowModal(true);

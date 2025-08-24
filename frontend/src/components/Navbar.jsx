@@ -3,6 +3,7 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
+import { toast } from 'react-toastify';
 
 
 const Navbar = () => {
@@ -27,7 +28,7 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
     setShowProfileMenu(false);
-    alert("Logout successful");
+    toast.success("Logout successful");
   };
 
   return (

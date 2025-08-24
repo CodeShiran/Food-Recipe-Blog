@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppContext';
+  import { toast } from 'react-toastify';
 
 const initialIngredient = { name: "", quantity: "" };
 const initialDirection = { step: "" };
@@ -18,6 +19,7 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
   const [image, setImage] = useState(null);
   const [author, setAuthor] = useState(""); // Should be user id
   const {currentUser} = useContext(AppContext)
+
 
   const handleIngredientChange = (idx, field, value) => {
     const updated = ingredients.map((ing, i) =>
@@ -40,7 +42,7 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
   const addIngredient = () => setIngredients([...ingredients, initialIngredient]);
   const addDirection = () => setDirections([...directions, initialDirection]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -63,8 +65,19 @@ const AddRecipeModal = ({ onSubmit, onClose }) => {
     console.log(currentUser.id)
 
   onSubmit(formData);
-  console.log({title, description, content, nutritionalInfo, prepTime, cookTime, ingredients, directions, author: currentUser.id, image});
-  onClose();
+
+  if (!title || !description || !type || !content || !prepTime || !cookTime || ingredients.length === 0 || directions.length === 0) {
+    toast.warning("Please fill in all required fields.");
+    return;
+  }
+
+  try {
+    await Promise.resolve(onSubmit(formData));
+    toast.success("Recipe added successfully");
+    onClose();
+  } catch (error) {
+    toast.error(error?.response?.data?.message || error?.message || "Failed to add recipe");
+  }
   };
 
   return (

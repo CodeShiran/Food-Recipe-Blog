@@ -5,6 +5,7 @@ import Chat from "../components/Chat";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Recipes = () => {
   const [search, setSearch] = useState("");
@@ -60,7 +61,7 @@ const Recipes = () => {
       <div className="flex justify-start items-center mt-[20px]">
         <button onClick={() => {
           if(!currentUser || !currentUser.id) {
-            alert("You must be logged in to add a recipe.");
+            toast.warning("You must be logged in to add a recipe.");
             return;
           }
           setShowModal(true);
