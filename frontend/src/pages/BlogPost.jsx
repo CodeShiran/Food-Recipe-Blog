@@ -1,13 +1,12 @@
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import EmailBox from '../components/EmailBox';
-import moreRecipes from '../assets/moreRecipes';
 import RecipeCard from '../components/RecipeCard';
 import Chat from '../components/Chat';
 import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const BlogPost = () => {
     const {fetchBlogById, fetchUserById} = useContext(AppContext)
@@ -37,6 +36,8 @@ const BlogPost = () => {
         fetchUser()
     },[blogPost])
     
+    const {recipes} = useContext(AppContext)
+    const navigate = useNavigate()
     
   return (
     <div className='md:px-[50px] px-[25px]'>
@@ -72,15 +73,19 @@ const BlogPost = () => {
         <div className='mt-8 mb-10'>
             <h3 className='text-2xl font-semibold text-center'>You May Like These Foods Too</h3>
             <div className='mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center'>
-              {moreRecipes.slice(0, 4).map((recipes, index) => (
-                <RecipeCard
-                        key={index}
-                        image={recipes.image}
-                        name={recipes.name}
-                        time={recipes.time}
-                        type={recipes.type}
-                        bgColor="bg-[#ffffff]"
-                    />
+              {recipes.slice(0, 4).map((recipe, index) => (
+               <RecipeCard
+             onClick={() => {
+        window.scrollTo(0, 0); // Scroll to top
+        navigate(`/recipes/${recipe._id}`);
+    }}
+            key={index}
+            image={recipe.image}
+            name={recipe.title}
+            time={recipe.cookTime}
+            type={recipe.type}
+            bgColor="bg-[#ffffff]"
+          />
               ))}
             </div>
         </div>
