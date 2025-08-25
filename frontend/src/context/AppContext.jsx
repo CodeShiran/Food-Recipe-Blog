@@ -167,8 +167,20 @@ const ContextProvider = ({children}) => {
         }
     }
 
+    const subscribeUser = async (email) => {
+        try {
+            const url = `${API_BASE}/api/email/subscribe`
+            const response = await axios.post(url, { email })
+            return response.data
+        } catch (error) {
+            console.error("Error subscribing user:", error?.response?.data?.message ?? error.message)
+            throw error
+        }
+    }
+
+
     return (
-        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById, getRecipeById, fetchUserById, logout, createUser }}>
+        <AppContext.Provider value={{ blogPosts, recipes, addRecipe, aiChat, login, currentUser, addBlog, fetchBlogById, getRecipeById, fetchUserById, logout, createUser, subscribeUser }}>
             {children}
         </AppContext.Provider>
     )
