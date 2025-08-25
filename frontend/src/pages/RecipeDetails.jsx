@@ -10,7 +10,7 @@ import moreRecipes from '../assets/moreRecipes';
 import RecipeCard from '../components/RecipeCard'
 import Chat from '../components/Chat';
 import { AppContext } from '../context/AppContext';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const nutritionData = [
   { label: 'Calories', value: '200 kcal' },
@@ -27,31 +27,14 @@ const method = [{
   'null': 'null'
 }]
 
-const recipes = [
-    {
-        id: 1,
-        title: "Healthy Japanese Fried Rice",
-        image: assets.chickenMeatballsSm,
-        person: "John Doe",
-    },
-    {
-        id: 2,
-        title: "Spaghetti Carbonara",
-        image: assets.creamyChickenSm,
-        person: "Jane Smith",
-    },
-    {
-        id: 3,
-        title: "Chicken Tikka Masala",
-        image: assets.potChickensm,
-        person: "Alice Johnson",
-    },
-]
+
 
 const RecipeDetails = () => {
   const {getRecipeById} = useContext(AppContext)
   const {id} = useParams()
   const [currentRecipe, setCurrentRecipe] = useState(null); 
+  const navigate = useNavigate()
+  const {recipes} = useContext(AppContext)
 
 
   useEffect(() => {
@@ -158,6 +141,10 @@ const RecipeDetails = () => {
                 <div className='flex flex-col gap-5 items-center md:items-end'>
                     {recipes.map((recipe) => (
                         <SmallCard
+                            onClick={() =>{
+                            window.scrollTo(0,0)
+                             navigate(`/recipes/${recipe._id}`)
+                        }}
                             key={recipe.id}
                             image={recipe.image}
                             title={recipe.title}
@@ -198,7 +185,6 @@ const RecipeDetails = () => {
               ))}
             </div>
         </div>
-        <Footer />
     </div>
   )
 }
