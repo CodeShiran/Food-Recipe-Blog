@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import assets from "../assets/assets";
 import { AppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 
 const EmailBox = () => {
@@ -14,14 +15,14 @@ const EmailBox = () => {
   const handleSubscribe = async (e) => {
     e.preventDefault()
     if(!email || !validateEmail(email)){
-      alert("Please enter a valid email address.")
+      toast.warning("Please enter a valid email address.")
       return
     }
     try {
       const response = await subscribeUser(email)
-      alert(response.message)
+      toast.success(`subscribtion successful!`)      
     } catch (error) {
-      alert("Error subscribing to newsletter.")
+      toast(`${error}`)
       console.log(error)
     }
   }

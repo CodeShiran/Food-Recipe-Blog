@@ -2,6 +2,7 @@ import { createContext } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 
 export const AppContext = createContext();
@@ -173,7 +174,7 @@ const ContextProvider = ({children}) => {
             const response = await axios.post(url, { email })
             return response.data
         } catch (error) {
-            console.error("Error subscribing user:", error?.response?.data?.message ?? error.message)
+            toast.error("Error subscribing user:", error?.response?.data?.message ?? error.message)
             throw error
         }
     }

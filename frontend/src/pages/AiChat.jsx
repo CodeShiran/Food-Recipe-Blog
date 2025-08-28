@@ -120,14 +120,14 @@ const AiChat = () => {
 
       <div
         onClick={() => navigate("/")}
-        className="fixed top-5 left-5 z-30 cursor-pointer pointer-events-auto"
+        className="fixed top-0 left-0 p-[25px] z-30 cursor-pointer pointer-events-auto w-full backdrop-blur-md bg-black/20 border-b border-white/20 shadow-lg"
       >
         <h2 className="logo-font text-2xl text-white">Foodieland</h2>
       </div>
 
       {/* Foreground Content */}
       {messages.length === 0 ? (
-        <div className="relative z-20 flex flex-col items-center justify-center min-h-screen md:px-[50px] px-[25px]">
+        <div className="relative z-20 flex flex-col items-center justify-center mt-[50px] min-h-screen md:px-[50px] px-[25px]">
           <div className="mt-[100px] text-center">
             <h1 className="text-4xl font-bold text-white drop-shadow-lg">
               Explore Recipes with AI Search
@@ -217,6 +217,12 @@ const AiChat = () => {
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault(); // Prevent any default form behavior
+                      handleSend();
+                    }
+                  }}
                   className="p-2 focus:outline-none text-white placeholder:text-white w-full bg-transparent"
                   type="text"
                   placeholder="Type your message..."

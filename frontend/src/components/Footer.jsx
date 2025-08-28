@@ -11,7 +11,7 @@ const Footer = () => {
             </div>
             <div className='hidden md:flex items-center justify-between gap-6 list-none'>
                 <Link to="/recipes" onClick={() => window.scrollTo(0, 0)}><li className='font-semibold hover:text-gray-600 cursor-pointer'>Recipes</li></Link>
-                <Link to="/blogs" onClick={() => window.scrollTo(0, 0)}><li className='font-semibold hover:text-gray-600 cursor-pointer'>Blogs</li></Link>
+                <Link to="/blog" onClick={() => window.scrollTo(0, 0)}><li className='font-semibold hover:text-gray-600 cursor-pointer'>Blogs</li></Link>
                 <Link to="/contact" onClick={() => window.scrollTo(0, 0)}><li className='font-semibold hover:text-gray-600 cursor-pointer'>Contact</li></Link>
                 <Link to="/about" onClick={() => window.scrollTo(0, 0)}><li className='font-semibold hover:text-gray-600 cursor-pointer'>About Us</li></Link>
             </div>
