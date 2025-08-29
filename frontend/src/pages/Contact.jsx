@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import assets from "../assets/assets";
 import EmailBox from "../components/EmailBox";
 import moreRecipes from "../assets/moreRecipes";
 import RecipeCard from "../components/RecipeCard";
 import Chat from "../components/Chat";
+import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
   const [name, setName] = useState("")
@@ -37,6 +39,9 @@ const Contact = () => {
     }
     else alert("Message failed to send.")
   }
+
+  const {recipes} = useContext(AppContext)
+  const navigate = useNavigate()
   return (
     <div className="md:px-[50px] px-[25px]">
       <Chat />
@@ -111,15 +116,19 @@ const Contact = () => {
       <div className='mt-8 mb-10'>
             <h3 className='text-2xl font-semibold text-center'>You May Like These Foods Too</h3>
             <div className='mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center'>
-              {moreRecipes.slice(0, 4).map((recipes, index) => (
+              {recipes.slice(0, 4).map((recipe, index) => (
                 <RecipeCard
-                        key={index}
-                        image={recipes.image}
-                        name={recipes.name}
-                        time={recipes.time}
-                        type={recipes.type}
-                        bgColor="bg-[#ffffff]"
-                    />
+             onClick={() => {
+        window.scrollTo(0, 0); // Scroll to top
+        navigate(`/recipes/${recipe._id}`);
+    }}
+            key={index}
+            image={recipe.image}
+            name={recipe.title}
+            time={recipe.cookTime}
+            type={recipe.type}
+            bgColor="bg-[#ffffff]"
+          />
               ))}
             </div>
         </div>
